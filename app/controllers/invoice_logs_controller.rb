@@ -1,0 +1,2 @@
+class InvoiceLogsController < ApplicationController
+end

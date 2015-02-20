@@ -6,7 +6,7 @@ class CreateInvoices < ActiveRecord::Migration
       t.string :invoice_num
       t.date :invoice_date
       t.string :subject
-      t.decimal :amount, :scale 2, :default 0
+      t.decimal :amount, precision: 11, scale: 2, default: 0
       t.text :csv
       t.text :xml
       t.text :xsig
