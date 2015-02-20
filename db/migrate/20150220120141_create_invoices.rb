@@ -10,6 +10,7 @@ class CreateInvoices < ActiveRecord::Migration
       t.text :csv
       t.text :xml
       t.text :xsig
+      #ToDo: t.boolean :is_converted, default: false
       t.boolean :is_converted
       t.boolean :is_signed
       t.boolean :is_presented
