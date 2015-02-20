@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  invoice_id: 1
+  date_time: 2015-02-20 13:06:43
+  action: MyString
+  action_code: 1
+
+two:
+  invoice_id: 1
+  date_time: 2015-02-20 13:06:43
+  action: MyString
+  action_code: 1
