@@ -1,0 +1,253 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1280" measuredH="800" mockupW="1280" mockupH="800">
+  <controls>
+    <control controlID="134" controlTypeID="com.balsamiq.mockups::FieldSet" x="0" y="0" w="1280" h="800" measuredW="200" measuredH="170" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>14540253</color>
+      </controlProperties>
+    </control>
+    <control controlID="138" controlTypeID="__group__" x="525" y="766" w="231" h="19" measuredW="231" measuredH="19" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>http%3A//www.sistemasc.net</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22525%2C766%2C756%2C785%22%20href%3D%22http%3A//www.sistemasc.net%22%20alt%3D%22http%3A//www.sistemasc.net%22%20id%3D%22138%22%20target%3D%22_blank%22/%3E</map>
+      </controlProperties>
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="144" measuredH="19" zOrder="0" locked="false" isInGroup="138">
+          <controlProperties>
+            <text>Menorca%20Zeros%20i%20Uns%20SL</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Link" x="153" y="0" w="-1" h="-1" measuredW="78" measuredH="19" zOrder="1" locked="false" isInGroup="138">
+          <controlProperties>
+            <text>Terms%20of%20use</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="139" controlTypeID="com.balsamiq.mockups::Canvas" x="40" y="40" w="1200" h="54" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>0</color>
+      </controlProperties>
+    </control>
+    <control controlID="140" controlTypeID="com.balsamiq.mockups::SubTitle" x="57" y="55" w="107" h="-1" measuredW="95" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <href>Facturky.Index%26bm%3BFacturky.Index.bmml%26bm%3BFacturky.Index.bmml%26bm%3BFacturky.Index.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2257%2C55%2C164%2C82%22%20href%3D%22Facturky.Index.bmml%22%20alt%3D%22Facturky.Index%22%20id%3D%22140%22/%3E</map>
+        <text>Facturky</text>
+      </controlProperties>
+    </control>
+    <control controlID="142" controlTypeID="com.balsamiq.mockups::Label" x="373" y="54" w="467" h="-1" measuredW="201" measuredH="28" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <size>20</size>
+        <text>COMPANY%20NAME%2C%20S.L.</text>
+      </controlProperties>
+    </control>
+    <control controlID="143" controlTypeID="com.balsamiq.mockups::Button" x="1152" y="56" w="71" h="27" measuredW="63" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>13576743</color>
+        <text>Logout</text>
+      </controlProperties>
+    </control>
+    <control controlID="144" controlTypeID="com.balsamiq.mockups::Button" x="855" y="55" w="168" h="27" measuredW="100" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>40463</color>
+        <href>Facturky.Index%26bm%3BFacturky.Index.bmml%26bm%3BFacturky.Index.bmml%26bm%3BFacturky.Index.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22855%2C55%2C1023%2C82%22%20href%3D%22Facturky.Index.bmml%22%20alt%3D%22Facturky.Index%22%20id%3D%22144%22/%3E</map>
+        <text>Your%20invoices</text>
+      </controlProperties>
+    </control>
+    <control controlID="145" controlTypeID="com.balsamiq.mockups::SearchBox" x="40" y="117" w="807" h="-1" measuredW="658" measuredH="44" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>32</size>
+        <text>Select%20invoice%20in%20CSV%20format%20from%20your%20disk</text>
+      </controlProperties>
+    </control>
+    <control controlID="147" controlTypeID="__group__" x="40" y="220" w="800" h="318" measuredW="800" measuredH="318" zOrder="7" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::FieldSet" x="0" y="0" w="800" h="318" measuredW="200" measuredH="170" zOrder="0" locked="false" isInGroup="147">
+          <controlProperties>
+            <text>Invoice</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Label" x="139" y="171" w="112" h="-1" measuredW="112" measuredH="24" zOrder="1" locked="false" isInGroup="147">
+          <controlProperties>
+            <bold>true</bold>
+            <size>16</size>
+            <text>2015/0001245</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="139" y="202" w="88" h="-1" measuredW="88" measuredH="24" zOrder="2" locked="false" isInGroup="147">
+          <controlProperties>
+            <bold>true</bold>
+            <size>16</size>
+            <text>01/02/2015</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="139" y="239" w="144" h="-1" measuredW="98" measuredH="32" zOrder="3" locked="false" isInGroup="147">
+          <controlProperties>
+            <bold>true</bold>
+            <size>24</size>
+            <text>1.525%2C46</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="15" y="21" w="83" h="-1" measuredW="72" measuredH="24" zOrder="4" locked="false" isInGroup="147">
+          <controlProperties>
+            <size>16</size>
+            <text>Customer</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="139" y="17" w="654" h="-1" measuredW="312" measuredH="32" zOrder="5" locked="false" isInGroup="147">
+          <controlProperties>
+            <bold>true</bold>
+            <size>24</size>
+            <text>Consell%20Insular%20de%20menorca</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="15" y="172" w="83" h="-1" measuredW="42" measuredH="21" zOrder="6" locked="false" isInGroup="147">
+          <controlProperties>
+            <text>Invoice</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="15" y="203" w="26" h="-1" measuredW="28" measuredH="21" zOrder="7" locked="false" isInGroup="147">
+          <controlProperties>
+            <text>Date</text>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="15" y="243" w="56" h="-1" measuredW="56" measuredH="24" zOrder="8" locked="false" isInGroup="147">
+          <controlProperties>
+            <size>16</size>
+            <text>Amount</text>
+          </controlProperties>
+        </control>
+        <control controlID="9" controlTypeID="com.balsamiq.mockups::Link" x="15" y="284" w="-1" h="-1" measuredW="83" measuredH="19" zOrder="9" locked="false" isInGroup="147">
+          <controlProperties>
+            <text>Delete%20invoice</text>
+          </controlProperties>
+        </control>
+        <control controlID="10" controlTypeID="com.balsamiq.mockups::Label" x="15" y="90" w="107" h="-1" measuredW="93" measuredH="21" zOrder="10" locked="false" isInGroup="147">
+          <controlProperties>
+            <text>Processing%20unit</text>
+          </controlProperties>
+        </control>
+        <control controlID="11" controlTypeID="com.balsamiq.mockups::Label" x="140" y="89" w="96" h="-1" measuredW="96" measuredH="24" zOrder="11" locked="false" isInGroup="147">
+          <controlProperties>
+            <bold>true</bold>
+            <size>16</size>
+            <text>1234567890</text>
+          </controlProperties>
+        </control>
+        <control controlID="12" controlTypeID="com.balsamiq.mockups::Label" x="15" y="114" w="115" h="-1" measuredW="115" measuredH="21" zOrder="12" locked="false" isInGroup="147">
+          <controlProperties>
+            <text>Accounting%20service</text>
+          </controlProperties>
+        </control>
+        <control controlID="13" controlTypeID="com.balsamiq.mockups::Label" x="140" y="113" w="96" h="-1" measuredW="96" measuredH="24" zOrder="13" locked="false" isInGroup="147">
+          <controlProperties>
+            <bold>true</bold>
+            <size>16</size>
+            <text>1234567890</text>
+          </controlProperties>
+        </control>
+        <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="15" y="137" w="102" h="-1" measuredW="102" measuredH="21" zOrder="14" locked="false" isInGroup="147">
+          <controlProperties>
+            <text>Management%20unit</text>
+          </controlProperties>
+        </control>
+        <control controlID="15" controlTypeID="com.balsamiq.mockups::Label" x="140" y="136" w="96" h="-1" measuredW="96" measuredH="24" zOrder="15" locked="false" isInGroup="147">
+          <controlProperties>
+            <bold>true</bold>
+            <size>16</size>
+            <text>1234567890</text>
+          </controlProperties>
+        </control>
+        <control controlID="16" controlTypeID="com.balsamiq.mockups::Label" x="15" y="53" w="83" h="-1" measuredW="57" measuredH="24" zOrder="16" locked="false" isInGroup="147">
+          <controlProperties>
+            <size>16</size>
+            <text>Subject</text>
+          </controlProperties>
+        </control>
+        <control controlID="17" controlTypeID="com.balsamiq.mockups::Label" x="139" y="49" w="654" h="-1" measuredW="308" measuredH="32" zOrder="17" locked="false" isInGroup="147">
+          <controlProperties>
+            <bold>true</bold>
+            <size>24</size>
+            <text>City%20council%20house%20painting</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="148" controlTypeID="com.balsamiq.mockups::Button" x="1031" y="55" w="113" h="27" measuredW="49" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16711935</color>
+        <text>Help</text>
+      </controlProperties>
+    </control>
+    <control controlID="151" controlTypeID="com.balsamiq.mockups::Button" x="855" y="220" w="385" h="49" measuredW="99" measuredH="32" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>13576743</color>
+        <size>24</size>
+        <state>up</state>
+        <text>Cancel</text>
+      </controlProperties>
+    </control>
+    <control controlID="152" controlTypeID="com.balsamiq.mockups::Button" x="855" y="287" w="385" h="49" measuredW="172" measuredH="32" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16750848</color>
+        <size>24</size>
+        <text>Store%20as%20XML</text>
+      </controlProperties>
+    </control>
+    <control controlID="153" controlTypeID="com.balsamiq.mockups::Button" x="855" y="355" w="385" h="49" measuredW="282" measuredH="32" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>2848996</color>
+        <size>24</size>
+        <text>Sign%20and%20store%20as%20XSIG</text>
+      </controlProperties>
+    </control>
+    <control controlID="154" controlTypeID="com.balsamiq.mockups::Button" x="855" y="422" w="385" h="49" measuredW="265" measuredH="32" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <state>disabled</state>
+        <text>Send%20to%20administration</text>
+      </controlProperties>
+    </control>
+    <control controlID="155" controlTypeID="com.balsamiq.mockups::Button" x="855" y="489" w="385" h="49" measuredW="213" measuredH="32" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <state>disabled</state>
+        <text>Download%20as%20PDF</text>
+      </controlProperties>
+    </control>
+    <control controlID="156" controlTypeID="__group__" x="40" y="570" w="1200" h="182" measuredW="1200" measuredH="182" zOrder="9" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::FieldSet" x="0" y="0" w="1200" h="182" measuredW="200" measuredH="170" zOrder="0" locked="false" isInGroup="156">
+          <controlProperties>
+            <text>Status</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Paragraph" x="17" y="16" w="275" h="54" measuredW="275" measuredH="80" zOrder="1" locked="false" isInGroup="156">
+          <controlProperties>
+            <size>14</size>
+            <text>*01/02/2015%2014%3A05*%20File%20saved%0A*01/02/2015%2014%3A15*%20Converted%20to%20XML%0A*01/02/2015%2014%3A30*%20Signed%20by%20fulano%0A*01/02/2015%2014%3A45*%20Sent%20to%20administration</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="157" controlTypeID="com.balsamiq.mockups::Button" x="855" y="110" w="385" h="57" measuredW="195" measuredH="32" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text>Upload%20CSV%20file</text>
+      </controlProperties>
+    </control>
+    <control controlID="159" controlTypeID="com.balsamiq.mockups::Button" x="164" y="44" w="194" h="48" measuredW="121" measuredH="27" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16750848</color>
+        <href>Facturky.Index%26bm%3BFacturky.Index.bmml%26bm%3BFacturky.Index.bmml%26bm%3BFacturky.Index.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22164%2C44%2C358%2C92%22%20href%3D%22Facturky.Index.bmml%22%20alt%3D%22Facturky.Index%22%20id%3D%22159%22/%3E</map>
+        <menuIcon>false</menuIcon>
+        <size>18</size>
+        <text>Upload%20form</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
