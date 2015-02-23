@@ -9,16 +9,6 @@ require 'rails_helper'
 #   validates :invoice_date, presence: true
 #   validates :amount, presence: true, numericality: true
 
-#   after_initialize :on_new_record
-
-#   private
-
-#   def on_new_record
-#     self.is_converted ||= false
-#     self.is_signed    ||= false
-#     self.is_presented ||= false
-#   end
-
 # end
 
 # issuer_id

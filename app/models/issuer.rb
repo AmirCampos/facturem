@@ -1,7 +1,7 @@
 class Issuer < ActiveRecord::Base
   has_many :invoices, :dependent => :delete_all
 
-  validates :vat_id,
+  validates :tax_id,
     presence: true,
     uniqueness: true, 
     nif: true

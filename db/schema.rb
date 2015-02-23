@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20150220120643) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "invoice_logs", ["invoice_id"], name: "index_invoice_logs_on_invoice_id", using: :btree
+  add_index "invoice_logs", ["invoice_id", "id"], name: "index_invoice_logs_on_invoice_id_and_id", order: {"id"=>:desc}, using: :btree
 
   create_table "invoices", force: :cascade do |t|
     t.integer  "issuer_id"
@@ -46,18 +46,20 @@ ActiveRecord::Schema.define(version: 20150220120643) do
     t.text     "csv"
     t.text     "xml"
     t.text     "xsig"
-    t.boolean  "is_converted"
-    t.boolean  "is_signed"
-    t.boolean  "is_presented"
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.boolean  "is_converted",                          default: false
+    t.boolean  "is_signed",                             default: false
+    t.boolean  "is_presented",                          default: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
   end
 
-  add_index "invoices", ["customer_id"], name: "index_invoices_on_customer_id", using: :btree
+  add_index "invoices", ["issuer_id", "customer_id", "id"], name: "index_invoices_on_issuer_id_and_customer_id_and_id", using: :btree
+  add_index "invoices", ["issuer_id", "invoice_date", "id"], name: "index_invoices_on_issuer_id_and_invoice_date_and_id", using: :btree
+  add_index "invoices", ["issuer_id", "invoice_num", "id"], name: "index_invoices_on_issuer_id_and_invoice_num_and_id", using: :btree
   add_index "invoices", ["issuer_id"], name: "index_invoices_on_issuer_id", using: :btree
 
   create_table "issuers", force: :cascade do |t|
-    t.string   "vat_id"
+    t.string   "tax_id"
     t.string   "company_name"
     t.text     "certificate"
     t.string   "email"
@@ -66,6 +68,6 @@ ActiveRecord::Schema.define(version: 20150220120643) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "issuers", ["vat_id"], name: "index_issuers_on_vat_id", unique: true, using: :btree
+  add_index "issuers", ["tax_id"], name: "index_issuers_on_tax_id", unique: true, using: :btree
 
 end

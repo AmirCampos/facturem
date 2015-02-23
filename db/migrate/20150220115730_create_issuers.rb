@@ -1,7 +1,7 @@
 class CreateIssuers < ActiveRecord::Migration
   def change
     create_table :issuers do |t|
-      t.string :vat_id
+      t.string :tax_id
       t.string :company_name
       t.text :certificate
       t.string :email
@@ -9,6 +9,6 @@ class CreateIssuers < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :issuers, :vat_id, unique: true
+    add_index :issuers, :tax_id, unique: true
   end
 end

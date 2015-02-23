@@ -19,8 +19,6 @@ FactoryGirl.define do
   factory :invoice do
     association :issuer
     association :customer
-    # association :issuer, factory: :issuer
-    # association :customer, factory: :customer
     invoice_num {Faker::Number.number(10)}
     invoice_date {Date.today}
     amount {Faker::Commerce.price}

@@ -10,14 +10,15 @@ class CreateInvoices < ActiveRecord::Migration
       t.text :csv
       t.text :xml
       t.text :xsig
-      #ToDo: t.boolean :is_converted, default: false
-      t.boolean :is_converted
-      t.boolean :is_signed
-      t.boolean :is_presented
+      t.boolean :is_converted, default: false
+      t.boolean :is_signed, default: false
+      t.boolean :is_presented, default: false
 
       t.timestamps null: false
     end
     add_index :invoices, :issuer_id
-    add_index :invoices, :customer_id
+    add_index :invoices, [:issuer_id, :customer_id, :id]
+    add_index :invoices, [:issuer_id, :invoice_num, :id]
+    add_index :invoices, [:issuer_id, :invoice_date, :id]
   end
 end

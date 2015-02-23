@@ -4,7 +4,7 @@ require 'faker'
 
 FactoryGirl.define do
   factory :issuer do
-    vat_id { 'B07079999'}
+    tax_id { 'B07079999'}
     company_name { Faker::Company.name } # Why using lamdba here?
     email    { Faker::Internet.email }
     password { Faker::Internet.password }

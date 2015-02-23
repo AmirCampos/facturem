@@ -7,6 +7,6 @@ class CreateInvoiceLogs < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :invoice_logs, :invoice_id
+    add_index :invoice_logs, [:invoice_id, :id], order: {invoice_id: :asc, id: :desc}
   end
 end
