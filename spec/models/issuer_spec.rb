@@ -34,5 +34,29 @@ RSpec.describe Issuer, type: :model do
 
       expect(issuer.valid?).to be false
     end
+
+    it "validates trade_name is optional" do
+      issuer = build(:issuer)
+
+      expect(issuer.valid?).to be true
+    end
+
+    it "validates trade_name can not be nil" do
+      issuer = build(:issuer, trade_name: nil)
+
+      expect(issuer).to be_invalid
+    end
+
+    it "validates country_code is ESP fixed" do
+      issuer = build(:issuer)
+
+      expect(issuer.country_code).to eq "ESP"
+    end
+
+    it "validates person_type_code is valid" do
+      issuer = build(:issuer)
+
+      expect(issuer.valid?).to be true
+    end
   end
 end
