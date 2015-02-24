@@ -50,5 +50,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'factory_girl_rails'
 
+  # Add a comment summarizing the current schema to the top or bottom of each of your…
+  gem 'annotate', '~> 2.6.5'
+
 end
 

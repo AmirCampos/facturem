@@ -1,0 +1,9 @@
+v1.1,,,,,,,,,,,,,,,
+Invoice header,Issuer TAX ID. Must match with configuration.,Customer ID,Customer TAX ID,Customer name,Customer accounting service (oficina contable). Role type = 01,Customer management unit  (órgano gestor). Role type = 02,Customer processing unit (unidad tramitadora). Role type = 03,Customer address,Customer postal code,Customer town,Customer province,Invoice serie,Invoice number,Invoice date,Invoice subject
+1,B57534125,1001,P07032001A,Ajuntament Maó,L01070321,L01070322,L01070323,"Plaza Constitución, 1",,Maó,Balears,A,1,2015-02-23,Servicios varios
+Invoice detail,Article code,Delivery note number. Optional.,Delivery note date. Optional.,Item description,Quantity,Unit price without tax,Total line,Discount reason (text),Discount rate,Discount amount,Tax rate,Tax base,Tax amount,,
+2,1234,,,Servicios varios,1,1000,1000,,0,0,21,1000,2100,,
+Tax amount and rates,Tax rate,Tax base,Tax amount,,,,,,,,,,,,
+3,21,1000,210,,,,
+Invoice totals,Total gross amount,General discount reason,General discount rate,Total general discount,Total amount before taxes,Total invoice,,,,,,,,,
+4,1000,,0,0,1000,1210,,,,,,,,,

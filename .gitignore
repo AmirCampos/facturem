@@ -19,3 +19,4 @@
 /public/assets
 /vendor/
 /doc/samples/*.xsig
+.~lock.*
