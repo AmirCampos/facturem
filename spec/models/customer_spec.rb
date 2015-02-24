@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: customers
+#
+#  id                 :integer          not null, primary key
+#  name               :string
+#  description        :string
+#  processing_unit    :string
+#  accounting_service :string
+#  management_unit    :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
 require 'rails_helper'
   # validates :name, presence: true, length: { in: 4..255 }
   # validates :processing_unit, presence: true, length: { in: 8..10 }

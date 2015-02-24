@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: issuers
+#
+#  id                  :integer          not null, primary key
+#  tax_id              :string
+#  company_name        :string           default("")
+#  trade_name          :string
+#  email               :string
+#  password            :string
+#  person_type_code    :string           default("J")
+#  residence_type_code :string           default("R")
+#  address             :string
+#  town                :string
+#  province            :string
+#  country_code        :string           default("ESP")
+#  certificate         :text
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 require 'faker'

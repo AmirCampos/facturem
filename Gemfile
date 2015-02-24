@@ -36,7 +36,7 @@ gem 'nifval'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'pry-byebug'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -52,6 +52,9 @@ group :development, :test do
 
   # Add a comment summarizing the current schema to the top or bottom of each of your…
   gem 'annotate', '~> 2.6.5'
+  # Better Errors replaces the standard Rails error page with a much better and more useful error page. It is also usable outside of Rails in any Rack app as Rack middleware.
+  gem "better_errors"
+  gem "binding_of_caller"
 
 end
 
