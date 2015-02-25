@@ -3,6 +3,7 @@
 # Table name: customers
 #
 #  id                 :integer          not null, primary key
+#  tax_id             :string
 #  name               :string
 #  description        :string
 #  processing_unit    :string
@@ -12,11 +13,10 @@
 #  updated_at         :datetime         not null
 #
 
-# TODO: add tax_id to customer
-
 class Customer < ActiveRecord::Base
   has_many :invoices, :dependent => :delete_all
 
+  validates :tax_id, presence: true, uniqueness: true, nif: true
   validates :name, presence: true, length: { in: 4..255 }
   validates :processing_unit, presence: true, length: { in: 8..10 }
   validates :accounting_service, presence: true, length: { in: 8..10 }

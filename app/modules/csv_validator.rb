@@ -43,7 +43,7 @@ module CSVvalidator
           elsif (row_counter == 1) || SUPPORTED_ROWS.include?(row[0].to_i)
             row_validator = factory.create_row_validator(row_counter,row)
             if row_validator.invalid?
-              row_validator.errors.each do |k,v| 
+              row_validator.errors.each do |k,v|
                 CSVvalidator.add_error(self,row_counter,k,v)
               end
               if row_counter == 1

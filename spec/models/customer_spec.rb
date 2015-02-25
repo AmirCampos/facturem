@@ -3,6 +3,7 @@
 # Table name: customers
 #
 #  id                 :integer          not null, primary key
+#  tax_id             :string
 #  name               :string
 #  description        :string
 #  processing_unit    :string
@@ -13,10 +14,6 @@
 #
 
 require 'rails_helper'
-  # validates :name, presence: true, length: { in: 4..255 }
-  # validates :processing_unit, presence: true, length: { in: 8..10 }
-  # validates :accounting_service, presence: true, length: { in: 8..10 }
-  # validates :management_unit, presence: true, length: { in: 8..10 }
 
 RSpec.describe Customer, type: :model do
   describe "Validations" do
@@ -25,6 +22,13 @@ RSpec.describe Customer, type: :model do
 
       expect(customer.valid?).to be false
       expect(customer.errors[:name].present?).to be true
+    end
+
+    # TODO: When gem nivfal updated, test valid administration NIF
+    it "validates tax_id" do
+      customer = build(:customer, tax_id: "B07559974")
+
+      expect(customer.valid?).to be true
     end
 
     it "validates presence of processing_unit" do

@@ -3,6 +3,7 @@
 # Table name: customers
 #
 #  id                 :integer          not null, primary key
+#  tax_id             :string
 #  name               :string
 #  description        :string
 #  processing_unit    :string
@@ -16,14 +17,9 @@
 
 require 'faker'
 
-# name
-# description
-# processing_unit
-# accounting_service
-# management_unit
-
 FactoryGirl.define do
   factory :customer do
+    tax_id { 'J07682735'}
     name { Faker::Company.name }
     processing_unit { Faker::Number.number(10).to_s }
     accounting_service { Faker::Number.number(10).to_s }
