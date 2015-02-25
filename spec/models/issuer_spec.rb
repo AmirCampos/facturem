@@ -50,6 +50,13 @@ RSpec.describe Issuer, type: :model do
       expect(issuer.valid?).to be true
     end
 
+    # TODO: gem Nifval no contempla ajuntaments. Caldria fer un pull request amb els canvis
+    # it "validates P0703200F is valid NIF" do
+    #   issuer = build(:issuer, tax_id: "P0703200F")
+
+    #   expect(issuer.valid?).to be true
+    # end
+
     it "validates tax_id is NOT valid" do
       issuer = build(:issuer, tax_id: "123456789")
 

@@ -11,7 +11,7 @@ require 'rails_helper'
 #   end
 # end
 
-#ToDo: Test for IssuerHelper
+#TODO: Test for IssuerHelper
 
 # RSpec.describe CatsHelper, type: :helper do
 #   describe "#localize_date" do

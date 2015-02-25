@@ -12,7 +12,7 @@
 #  updated_at         :datetime         not null
 #
 
-# ToDO: add tax_id to customer
+# TODO: add tax_id to customer
 
 class Customer < ActiveRecord::Base
   has_many :invoices, :dependent => :delete_all

@@ -1,6 +1,7 @@
 v1.0,,,,,,,,,,,,,,,
 Invoice header,Issuer TAX ID. Must match with configuration.,Customer ID,Customer TAX ID,Customer name,Customer accounting service (oficina contable). Role type = 01,Customer management unit  (órgano gestor). Role type = 02,Customer processing unit (unidad tramitadora). Role type = 03,Customer address,Customer postal code,Customer town,Customer province,Invoice serie,Invoice number,Invoice date,Invoice subject
-1,B57534125,1001,P07032001A,Ajuntament Maó,L01070321,L01070322,L01070323,"Plaza Constitución, 1",,Maó,Balears,A,3,2015-03-01,Más trabajos
+#1,B57534125,1001,P07032001A,Ajuntament Maó,L01070321,L01070322,L01070323,"Plaza Constitución, 1",07003,Maó,Balears,A,2,2015-03-01,Otros trabajos
+1,B57534125,1001,41495761N,Ajuntament Maó,L01070321,L01070322,L01070323,"Plaza Constitución, 1",07003,Maó,Balears,A,2,2015-03-01,Otros trabajos
 Invoice detail,Article code,Delivery note number. Optional.,Delivery note date. Optional.,Item description,Quantity,Unit price without tax,Total line,Discount reason (text),Discount rate,Discount amount,Tax rate,Tax base,Tax amount,,
 2,1234,,,Servicios al 21%,2,1000,2000,,0,0,21,2000,420,,
 2,4321,,,Servicios al 10%,5,25.5,127.5,Descuento cliente,5,6.375,10,121.13,12.11,,
@@ -8,8 +9,8 @@ Tax amount and rates,Tax rate,Tax base,Tax amount,,,,,,,,,,,,
 3,10,121.13,12.11,,,,,,,,,,,,
 3,21,2000,420,,,,,,,,,,,,
 Invoice totals,Total gross amount,General discount reason,General discount rate,Total general discount,Total amount before taxes,Total invoice,,,,,,,,,
-4,2121.12,,,,2121.13,2553.24,,,,,,,,,
+4,2121.12,,0,0,2121.13,2553.24,,,,,,,,,
 Payment shedule,Installment due date,Installment due amount,Payment means. Fixed 04 (credit transfer),Account number to be credited (IBAN),,,,,,,,,,,
-5,2015-04-30,638.31,4,ES8204872215259000003122 ,,,,,,,,,,,
-5,2015-05-31,638.31,4,ES8204872215259000003122 ,,,,,,,,,,,
-5,2015-06-30,1276.62,4,ES8204872215259000003122 ,,,,,,,,,,,
+5,2015-04-30,638.31,04,ES8204872215259000003122,,,,,,,,,,,
+5,2015-05-31,638.31,04,ES8204872215259000003122,,,,,,,,,,,
+5,2015-06-30,1276.62,04,ES8204872215259000003122,,,,,,,,,,,

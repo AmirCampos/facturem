@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fe:Facturae xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:fe="http://www.facturae.es/Facturae/2009/v3.2/Facturae">
+<FileHeader>
+    <SchemaVersion>3.2</SchemaVersion>
+    <Modality>I</Modality>
+    <InvoiceIssuerType>EM</InvoiceIssuerType>
+    <Batch>
+        <BatchIdentifier>0000000000B18</BatchIdentifier>
+        <InvoicesCount>1</InvoicesCount>
+        <TotalInvoicesAmount>
+            <TotalAmount>63.13</TotalAmount>
+        </TotalInvoicesAmount>
+        <TotalOutstandingAmount>
+            <TotalAmount>63.13</TotalAmount>
+        </TotalOutstandingAmount>
+        <TotalExecutableAmount>
+            <TotalAmount>63.13</TotalAmount>
+        </TotalExecutableAmount>
+        <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+    </Batch>
+</FileHeader>
+</fe:Facturae>

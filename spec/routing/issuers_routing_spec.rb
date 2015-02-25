@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-# ToDo: issuers_routing_spec.rb
+# TODO: issuers_routing_spec.rb
 
 # RSpec.describe "Routing to cats", type: :routing do
 #   it "routes GET /cats to cats#index" do
