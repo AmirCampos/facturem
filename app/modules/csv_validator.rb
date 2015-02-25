@@ -12,7 +12,7 @@ module CSVvalidator
   REGEX_TAX            = /\A((100|[1-9]{1}[0-9]{0,1})(\.[0-9]{0,2})?|0(\.[0-9]{0,2})?|\.[0-9]{1,2})\z/
   REGEX_DISCOUNT       = /\A((100|[1-9]{1}[0-9]{0,1})(\.[0-9]{0,2})?|0(\.[0-9]{0,2})?|\.[0-9]{1,2})\z/
   MSG_NOT_VALID_NUMBER = "Is not a valid number, quantity, tax, discount or amount"
-  MSG_NOT_VALID_DATE   = ""
+  MSG_NOT_VALID_DATE   = "Is not a valid date. Expected format is yyyy-mm-dd"
 
   def self.add_error(validable,row_counter,field,message)
     line_number = (row_counter > 0 ? "Line #{row_counter}:" : "")
