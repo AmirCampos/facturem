@@ -55,6 +55,7 @@ group :development, :test do
   # Better Errors replaces the standard Rails error page with a much better and more useful error page. It is also usable outside of Rails in any Rack app as Rack middleware.
   gem "better_errors"
   gem "binding_of_caller"
+  gem "awesome_print"
 
 end
 

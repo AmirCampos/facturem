@@ -31,7 +31,7 @@ FactoryGirl.define do
     email    { Faker::Internet.email }
     password { Faker::Internet.password }
     address {Faker::Address.street_address}
-    town {Faker::Address.city}
+    town {Faker::Address.city.slice(0,20)}
     province {Faker::Address.state}
   end
 end

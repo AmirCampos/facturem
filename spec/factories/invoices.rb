@@ -23,19 +23,6 @@
 
 require 'faker'
 
-# issuer_id
-# customer_id
-# invoice_num
-# invoice_date
-# subject
-# amount
-# csv
-# xml
-# xsig
-# is_converted
-# is_signed
-# is_presented
-
 FactoryGirl.define do
   factory :invoice do
     association :issuer

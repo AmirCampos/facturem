@@ -6,5 +6,6 @@ class InvoicesController < ApplicationController
   end
 
   def upload
+    # TODO: start csv validation here
   end
 end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'invoices/show'
 
-  get 'invoices/upload'
+  post 'invoices/upload'
 
   get 'issuers/show'
 

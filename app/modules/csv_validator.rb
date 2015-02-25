@@ -24,8 +24,9 @@ module CSVvalidator
 
     validate :do_validations
 
-    def initialize(file_name)
+    def initialize(file_name, xml_generator)
       @file_name = file_name
+      @xml_generator = xml_generator
     end
 
     private
@@ -33,6 +34,7 @@ module CSVvalidator
     def do_validations
       factory = RowValidatorFactory.new(self)
       errors.clear
+      @xml_generator.clear
       row_counter = 1
       begin
         CSV.foreach(@file_name) do |row|
@@ -50,7 +52,7 @@ module CSVvalidator
                 break
               end
             else
-              # TODO: store valid validators for convert to xml
+              @xml_generator.add_row(row_validator)
             end
           end
           row_counter += 1
@@ -65,11 +67,13 @@ module CSVvalidator
 
   class AbstractRowValidator
     include ActiveModel::Validations
+    attr_reader :row_kind
 
     def initialize(owner,row_counter,row)
       @owner = owner
       @row_counter = row_counter
       @row = row
+      @row_kind = (SUPPORTED_ROWS.include?(row[0].to_i) ? row[0].to_i : 0)
     end
 
     protected
