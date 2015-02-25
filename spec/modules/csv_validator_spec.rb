@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'csv_validator'
+require 'faker'
 
 RSpec.describe CSVvalidator, type: :module do
   describe "Validates an imported CSV" do
@@ -14,6 +15,29 @@ RSpec.describe CSVvalidator, type: :module do
 
       p validator.errors.messages unless validator.valid?
       # expect(validator.errors.messages.length).to eq 0
+      expect(validator.valid?).to be_truthy
+    end
+
+    it "should create a non existing customer. '41495761N' 1.csv" do
+      validator = CSVvalidator::Validator.new("#{Rails.root}/spec/fixtures/1.csv")
+
+      p validator.errors.messages unless validator.valid?
+      customer = Customer.find_by(tax_id: "41495761N")
+      expect(customer).to be_truthy
+    end
+
+    it "should use an existing customer. 'B07079999' 1.csv" do
+      @customer = Customer.create(
+        tax_id: "B07079999",
+        name: Faker::Company.name,
+        processing_unit: Faker::Number.number(10).to_s,
+        accounting_service: Faker::Number.number(10).to_s,
+        management_unit: Faker::Number.number(10).to_s)
+
+      validator = CSVvalidator::Validator.new("#{Rails.root}/spec/fixtures/1.csv")
+
+      # TODO: When validators will be saved, test customer == validator.customer
+      p validator.errors.messages unless validator.valid?
       expect(validator.valid?).to be_truthy
     end
 

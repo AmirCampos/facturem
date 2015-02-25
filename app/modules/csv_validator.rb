@@ -49,6 +49,8 @@ module CSVvalidator
               if row_counter == 1
                 break
               end
+            else
+              # TODO: store valid validators for convert to xml
             end
           end
           row_counter += 1
@@ -90,49 +92,51 @@ module CSVvalidator
   end
 
   class InvoiceHeaderRowValidator < AbstractRowValidator
-    attr_accessor :issuer_tax_id
+    attr_reader :customer
+
+    attr_reader :issuer_tax_id
     validate :validate_issuer
 
-    attr_accessor :customer_id
+    attr_reader :customer_id
     validate :validate_customer
 
-    attr_accessor :customer_tax_id
+    attr_reader :customer_tax_id
     validates :customer_tax_id, presence: true, nif: true
 
-    attr_accessor :customer_name
+    attr_reader :customer_name
     validates :customer_name, presence: true, length: { in: 4..80}
 
-    attr_accessor :customer_accounting_service
+    attr_reader :customer_accounting_service
     validates :customer_accounting_service, presence: true, length: { in: 0..10}
 
-    attr_accessor :customer_management_unit
+    attr_reader :customer_management_unit
     validates :customer_management_unit, presence: true, length: { in: 0..10}
 
-    attr_accessor :customer_processing_unit
+    attr_reader :customer_processing_unit
     validates :customer_processing_unit, presence: true, length: { in: 0..10}
 
-    attr_accessor :customer_address
+    attr_reader :customer_address
     validates :customer_address, length: { in: 0..80}
 
-    attr_accessor :customer_postal_code
+    attr_reader :customer_postal_code
     validates :customer_postal_code, format: { with: /\A\d{5}\z/, message: "Must be a valid spanish post code" }
 
-    attr_accessor :customer_town
+    attr_reader :customer_town
     validates :customer_town, length: { in: 0..50}
 
-    attr_accessor :customer_province
+    attr_reader :customer_province
     validates :customer_province, length: { in: 0..20}
 
-    attr_accessor :invoice_serie
+    attr_reader :invoice_serie
     validates :invoice_serie, presence: true, length: { in: 0..20}
 
-    attr_accessor :invoice_number
+    attr_reader :invoice_number
     validates :invoice_number, presence: true, length: { in: 0..20}
 
     attr_reader :invoice_date
     validates :invoice_date, format: { with: REGEX_DATE, message: MSG_NOT_VALID_DATE }
 
-    attr_accessor :invoice_subject
+    attr_reader :invoice_subject
     validates :invoice_subject, length: { in: 0..80}
 
     def initialize(owner,row_counter,row)
@@ -161,11 +165,22 @@ module CSVvalidator
     end
 
     def validate_customer
-      # TODO: create a customer if not exist. If not valid customer, return customer errors.
-      # TODO: Fill customer
-
+      @customer = Customer.find_by(tax_id: @customer_tax_id)
+      # create a customer if not exist. 
+      if !@customer
+        @customer = Customer.create(
+          tax_id: @customer_tax_id,
+          name: @customer_name,
+          processing_unit: @customer_processing_unit,
+          accounting_service: @customer_accounting_service,
+          management_unit: @customer_management_unit)
+        if !@customer.valid?
+          @Customer.errors.each do |k,v|
+            add_error(:customer,v)
+          end
+        end
+      end
     end
-
   end
 
   class RowValidatorInvoiceDetail < AbstractRowValidator

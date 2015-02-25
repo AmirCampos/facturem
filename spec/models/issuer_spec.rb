@@ -47,6 +47,7 @@ RSpec.describe Issuer, type: :model do
     it "validates tax_id is valid" do
       issuer = build(:issuer)
 
+      p issuer.errors.messages unless issuer.valid?
       expect(issuer.valid?).to be true
     end
 
@@ -66,6 +67,7 @@ RSpec.describe Issuer, type: :model do
     it "validates trade_name is optional" do
       issuer = build(:issuer)
 
+      p issuer.errors.messages unless issuer.valid?
       expect(issuer.valid?).to be true
     end
 
@@ -84,6 +86,7 @@ RSpec.describe Issuer, type: :model do
     it "validates person_type_code is valid" do
       issuer = build(:issuer)
 
+      p issuer.errors.messages unless issuer.valid?
       expect(issuer.valid?).to be true
     end
   end
