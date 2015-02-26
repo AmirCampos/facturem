@@ -31,5 +31,9 @@ RSpec.describe XMLgenerator, type: :module do
       expect(@xml_generator.total.total_invoice).to eq "2553.24"
     end
 
+    it "XML should have have this total amount" do
+      expect(@xml_generator.generate_xml).to eq "adsbas"
+    end
+
   end
 end

@@ -145,21 +145,21 @@ module CSVvalidator
 
     def initialize(owner,row_counter,row)
       super
-      @issuer_tax_id               = @row[ 1]
-      @customer_id                 = @row[ 2]
-      @customer_tax_id             = @row[ 3]
-      @customer_name               = @row[ 4]
-      @customer_accounting_service = @row[ 5]
-      @customer_management_unit    = @row[ 6]
-      @customer_processing_unit    = @row[ 7]
-      @customer_address            = @row[ 8]
-      @customer_postal_code        = @row[ 9]
-      @customer_town               = @row[10]
-      @customer_province           = @row[11]
-      @invoice_serie               = @row[12]
-      @invoice_number              = @row[13]
-      @invoice_date                = @row[14]
-      @invoice_subject             = @row[15]
+      @issuer_tax_id               = @row[ 1].to_s.strip
+      @customer_id                 = @row[ 2].to_s.strip
+      @customer_tax_id             = @row[ 3].to_s.strip
+      @customer_name               = @row[ 4].to_s.strip
+      @customer_accounting_service = @row[ 5].to_s.strip
+      @customer_management_unit    = @row[ 6].to_s.strip
+      @customer_processing_unit    = @row[ 7].to_s.strip
+      @customer_address            = @row[ 8].to_s.strip
+      @customer_postal_code        = @row[ 9].to_s.strip
+      @customer_town               = @row[10].to_s.strip
+      @customer_province           = @row[11].to_s.strip
+      @invoice_serie               = @row[12].to_s.strip
+      @invoice_number              = @row[13].to_s.strip
+      @invoice_date                = @row[14].to_s.strip
+      @invoice_subject             = @row[15].to_s.strip
     end
 
     private
@@ -229,19 +229,19 @@ module CSVvalidator
 
     def initialize(owner,row_counter,row)
       super
-      @article_code                 = @row[ 1]
-      @delivery_note_number         = @row[ 2]
-      @delivery_note_date           = @row[ 3]
-      @item_description             = @row[ 4]
-      @quantity                     = @row[ 5]
-      @unit_price_without_tax       = @row[ 6]
-      @total_line                   = @row[ 7]
-      @discount_reason              = @row[ 8]
-      @discount_rate                = @row[ 9]
-      @discount_amount              = @row[10]
-      @tax_rate                     = @row[11]
-      @tax_base                     = @row[12]
-      @tax_amount                   = @row[13]
+      @article_code                 = @row[ 1].to_s.strip
+      @delivery_note_number         = @row[ 2].to_s.strip
+      @delivery_note_date           = @row[ 3].to_s.strip
+      @item_description             = @row[ 4].to_s.strip
+      @quantity                     = @row[ 5].to_s.strip
+      @unit_price_without_tax       = @row[ 6].to_s.strip
+      @total_line                   = @row[ 7].to_s.strip
+      @discount_reason              = @row[ 8].to_s.strip
+      @discount_rate                = @row[ 9].to_s.strip
+      @discount_amount              = @row[10].to_s.strip
+      @tax_rate                     = @row[11].to_s.strip
+      @tax_base                     = @row[12].to_s.strip
+      @tax_amount                   = @row[13].to_s.strip
     end
   end
 
@@ -257,9 +257,9 @@ module CSVvalidator
 
     def initialize(owner,row_counter,row)
       super
-      @tax_rate                  = @row[ 1]
-      @tax_base                  = @row[ 2]
-      @tax_amount                = @row[ 3]
+      @tax_rate                  = @row[ 1].to_s.strip
+      @tax_base                  = @row[ 2].to_s.strip
+      @tax_amount                = @row[ 3].to_s.strip
     end
   end
 
@@ -284,12 +284,12 @@ module CSVvalidator
 
     def initialize(owner,row_counter,row)
       super
-      @total_gross_amount        = @row[ 1]
-      @general_discount_reason   = @row[ 2]
-      @general_discount_rate     = @row[ 3]
-      @total_general_discount    = @row[ 4]
-      @total_amount_before_taxes = @row[ 5]
-      @total_invoice             = @row[ 6]
+      @total_gross_amount        = @row[ 1].to_s.strip
+      @general_discount_reason   = @row[ 2].to_s.strip
+      @general_discount_rate     = @row[ 3].to_s.strip
+      @total_general_discount    = @row[ 4].to_s.strip
+      @total_amount_before_taxes = @row[ 5].to_s.strip
+      @total_invoice             = @row[ 6].to_s.strip
     end
   end
 
@@ -308,10 +308,10 @@ module CSVvalidator
 
     def initialize(owner,row_counter,row)
       super
-      @installment_due_date          = @row[ 1]
-      @installment_due_amount        = @row[ 2]
-      @payment_means                 = @row[ 3]
-      @account_number_to_be_credited = @row[ 4]
+      @installment_due_date          = @row[ 1].to_s.strip
+      @installment_due_amount        = @row[ 2].to_s.strip
+      @payment_means                 = @row[ 3].to_s.strip
+      @account_number_to_be_credited = @row[ 4].to_s.strip
     end
   end
 
