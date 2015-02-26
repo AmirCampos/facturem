@@ -19,6 +19,9 @@
 #  updated_at          :datetime         not null
 #
 
+      # TODO: add post_code to issuer
+
+
 class Issuer < ActiveRecord::Base
   has_many :invoices, :dependent => :delete_all
 
