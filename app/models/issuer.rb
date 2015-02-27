@@ -11,6 +11,7 @@
 #  person_type_code    :string           default("J")
 #  residence_type_code :string           default("R")
 #  address             :string
+#  postal_code         :string
 #  town                :string
 #  province            :string
 #  country_code        :string           default("ESP")
@@ -18,9 +19,6 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
-
-      # TODO: add post_code to issuer
-
 
 class Issuer < ActiveRecord::Base
   has_many :invoices, :dependent => :delete_all
@@ -35,6 +33,7 @@ class Issuer < ActiveRecord::Base
   validates :residence_type_code, presence: true,
     inclusion: { in: %w(E R U), message: "%{value} must be 'E'-Foreigner; 'R'-Resident in Spain; 'U'Resident in other EU country." }
   validates :address, presence: true, length: {in: 1..80}
+  validates :postal_code, presence: true, format: { with: /\A\d{5}\z/i }
   validates :town, presence: true, length: {in: 1..20}
   validates :province, presence: true, length: {in: 1..20}
   validates :country_code, presence: true, length: {is: 3}

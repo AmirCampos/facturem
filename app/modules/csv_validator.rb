@@ -1,4 +1,5 @@
 require 'csv'
+require 'iban-tools'
 
 module CSVvalidator
   COL_COUNT            = 16
@@ -304,7 +305,7 @@ module CSVvalidator
     validates :payment_means, presence: true, format: { with: /\A04\z/, message: "Only accepted payment means 04" }
 
     attr_reader :account_number_to_be_credited
-    validates :account_number_to_be_credited, presence: true, format: { with: /\A[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}\z/, message: "Only accepted valid IBAN" }
+    validate :validate_iban
 
     def initialize(owner,row_counter,row)
       super
@@ -313,6 +314,13 @@ module CSVvalidator
       @payment_means                 = @row[ 3].to_s.strip
       @account_number_to_be_credited = @row[ 4].to_s.strip
     end
+
+    private
+
+    def validate_iban
+      add_error(:account_number_to_be_credited, "Only accepted valid IBAN") unless IBANTools::IBAN.valid?(@account_number_to_be_credited)
+    end
+
   end
 
   class RowValidatorError < AbstractRowValidator

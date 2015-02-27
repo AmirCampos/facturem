@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150220120643) do
     t.string   "person_type_code",    default: "J"
     t.string   "residence_type_code", default: "R"
     t.string   "address"
+    t.string   "postal_code"
     t.string   "town"
     t.string   "province"
     t.string   "country_code",        default: "ESP"
