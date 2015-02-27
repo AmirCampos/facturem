@@ -27,6 +27,8 @@ gem 'nifval'
 # https://github.com/sparklemotion/nokogiri
 gem 'nokogiri'
 # Use ActiveModel has_secure_password
+# https://github.com/alphasights/iban-tools
+gem 'iban-tools'
 
 # gem 'bcrypt', '~> 3.1.7'
 
