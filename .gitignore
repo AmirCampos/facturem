@@ -20,3 +20,4 @@
 /vendor/
 /doc/samples/*.xsig
 .~lock.*
+/spec/fixtures/*.xml

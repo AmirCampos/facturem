@@ -207,7 +207,7 @@ module XMLgenerator
 
       result.add_child(items)
 
-      result.add_child(payment_details)
+      result.add_child(payment_details) unless installment_list.size == 0
 
       result
     end
@@ -215,13 +215,13 @@ module XMLgenerator
     def taxes_outputs
       result = new_node("TaxesOutputs")
       @tax_list.each do |tax|
-        result.add_child(tax_node(tax))
+        result.add_child(tax_node(tax, include_equivalence: false))
       end
 
       result
     end
 
-    def tax_node(tax)
+    def tax_node(tax, options)
       result = new_node("Tax")
       result.add_child(new_node("TaxTypeCode","01"))
       result.add_child(new_node("TaxRate",Formatter.format_2D(tax.tax_rate)))
@@ -229,10 +229,12 @@ module XMLgenerator
       "TaxableBase",tax.tax_base))
       result.add_child(amount_node(
       "TaxAmount",tax.tax_amount))
-      result.add_child(new_node(
-      "EquivalenceSurcharge",Formatter.format_2D(0.00)))
-      result.add_child(amount_node(
-      "EquivalenceSurchargeAmount",0.00))
+      if options[:include_equivalence]
+        result.add_child(new_node(
+        "EquivalenceSurcharge",Formatter.format_2D(0.00)))
+        result.add_child(amount_node(
+        "EquivalenceSurchargeAmount",0.00))
+      end
 
       result
     end
@@ -241,12 +243,12 @@ module XMLgenerator
       result = new_node("InvoiceTotals")
       result.add_child(new_node(
       "TotalGrossAmount",Formatter.format_2D(@total.total_gross_amount)))
-      result.add_child(new_node(
-      "GeneralDiscounts")).add_child(
-        discount(
-          @total.general_discount_reason,
-          @total.general_discount_rate,
-      @total.total_general_discount))
+      add_discount_if_exists(
+        result,
+        "GeneralDiscounts",
+        @total.general_discount_reason,
+        @total.general_discount_rate,
+      @total.total_general_discount)
       result.add_child(new_node(
       "TotalGeneralDiscounts",Formatter.format_2D(@total.total_general_discount)))
       result.add_child(new_node(
@@ -254,8 +256,8 @@ module XMLgenerator
       result.add_child(new_node(
       "TotalGrossAmountBeforeTaxes",Formatter.format_2D(@total.total_amount_before_taxes)))
       result.add_child(new_node(
-                         "TotalTaxOutputs",Formatter.format_2D(
-      @total.total_invoice.to_f - @total.total_amount_before_taxes.to_f)))
+          "TotalTaxOutputs",Formatter.format_2D(
+              @total.total_invoice.to_f - @total.total_amount_before_taxes.to_f)))
       result.add_child(new_node(
       "TotalTaxesWithheld",Formatter.format_2D(0.00)))
       result.add_child(new_node(
@@ -268,16 +270,18 @@ module XMLgenerator
       result
     end
 
-    def discount(reason,rate,amount)
-      result = new_node("Discount")
-      result.add_child(new_node(
-      "DiscountReason",reason))
-      result.add_child(new_node(
-      "DiscountRate",Formatter.format_4D(rate)))
-      result.add_child(new_node(
-      "DiscountAmount",Formatter.format_6D(amount)))
+    def add_discount_if_exists(node,tag,reason,rate,amount)
+      if amount.to_f != 0
+        child = new_node("Discount")
+        child.add_child(new_node(
+        "DiscountReason",reason))
+        child.add_child(new_node(
+        "DiscountRate",Formatter.format_4D(rate)))
+        child.add_child(new_node(
+        "DiscountAmount",Formatter.format_6D(amount)))
 
-      result
+        node.add_child(new_node(tag)).add_child(child)
+      end
     end
 
     ################################
@@ -298,18 +302,18 @@ module XMLgenerator
       result.add_child(new_node("UnitOfMeasure","01"))
       result.add_child(new_node("UnitPriceWithoutTax",Formatter.format_6D(item.unit_price_without_tax)))
       result.add_child(new_node("TotalCost",Formatter.format_6D(item.total_line)))
+      add_discount_if_exists(
+        result,
+        "DiscountsAndRebates",
+        item.discount_reason,
+        item.discount_rate,
+      item.discount_amount)
       result.add_child(new_node(
-      "DiscountsAndRebates")).add_child(
-        discount(
-          item.discount_reason,
-          item.discount_rate,
-      item.discount_amount))
-      result.add_child(new_node(
-        "GrossAmount",Formatter.format_6D(item.tax_base)))
+      "GrossAmount",Formatter.format_6D(item.tax_base)))
       tax_line = TaxItem.new(item.tax_base,item.tax_rate,item.tax_amount)
       result.add_child(new_node(
-        "TaxesOutputs")).add_child(
-          tax_node(tax_line))
+      "TaxesOutputs")).add_child(
+      tax_node(tax_line, include_equivalence: true))
 
       result
     end
