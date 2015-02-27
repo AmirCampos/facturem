@@ -388,7 +388,7 @@ module XMLgenerator
       format = "%0#{len}d"
       result = format(format, value)
       if result.length > len
-        result.slice!(1..len)
+        result.slice!(-len,len)
       end
       result
     end
