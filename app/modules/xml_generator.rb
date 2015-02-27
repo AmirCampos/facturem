@@ -109,8 +109,7 @@ module XMLgenerator
       legal_entity.add_child(new_node("CorporateName",@issuer.company_name))
       address_in_spain = new_node("AddressInSpain")
       address_in_spain.add_child(new_node("Address",@issuer.address))
-      # TODO: add post_code to issuer
-      address_in_spain.add_child(new_node("PostCode","07703")) # @issuer.post_code))
+      address_in_spain.add_child(new_node("PostCode",@issuer.postal_code))
       address_in_spain.add_child(new_node("Town",@issuer.town))
       address_in_spain.add_child(new_node("Province",@issuer.province))
       address_in_spain.add_child(new_node("CountryCode",@issuer.country_code))
@@ -192,8 +191,7 @@ module XMLgenerator
       invoice_issue_data = new_node("InvoiceIssueData")
       invoice_issue_data.add_child(new_node("IssueDate",@header.invoice_date))
       place_of_issue = new_node("PlaceOfIssue")
-      # TODO: add post_code to issuer
-      place_of_issue.add_child(new_node("PostCode","07703")) # @issuer.post_code))
+      place_of_issue.add_child(new_node("PostCode",@issuer.postal_code))
       place_of_issue.add_child(new_node("PlaceOfIssueDescription",@issuer.town))
       invoice_issue_data.add_child(place_of_issue)
 

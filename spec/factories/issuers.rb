@@ -11,6 +11,7 @@
 #  person_type_code    :string           default("J")
 #  residence_type_code :string           default("R")
 #  address             :string
+#  postal_code         :string
 #  town                :string
 #  province            :string
 #  country_code        :string           default("ESP")
@@ -31,6 +32,7 @@ FactoryGirl.define do
     email    { Faker::Internet.email }
     password { Faker::Internet.password }
     address {Faker::Address.street_address}
+    postal_code {Faker::Number.number(5).to_s}
     town {Faker::Address.city.slice(0,20)}
     province {Faker::Address.state}
   end

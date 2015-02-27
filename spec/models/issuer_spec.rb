@@ -11,6 +11,7 @@
 #  person_type_code    :string           default("J")
 #  residence_type_code :string           default("R")
 #  address             :string
+#  postal_code         :string
 #  town                :string
 #  province            :string
 #  country_code        :string           default("ESP")
@@ -88,6 +89,18 @@ RSpec.describe Issuer, type: :model do
 
       p issuer.errors.messages unless issuer.valid?
       expect(issuer.valid?).to be true
+    end
+
+    it "validates postal_code 00000 is valid" do
+      issuer = build(:issuer, postal_code: "00000")
+
+      expect(issuer.valid?).to be true
+    end
+
+    it "validates postal_code '7001' is NOT valid" do
+      issuer = build(:issuer, postal_code: "7001")
+
+      expect(issuer.valid?).to be false
     end
   end
 end

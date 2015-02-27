@@ -10,6 +10,7 @@ class CreateIssuers < ActiveRecord::Migration
       t.string :person_type_code, default: "J" #[F], [J]
       t.string :residence_type_code, default: "R" #[E], [R], [U]
       t.string :address
+      t.string :postal_code
       t.string :town
       t.string :province
       t.string :country_code, default: "ESP"
