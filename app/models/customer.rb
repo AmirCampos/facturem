@@ -21,4 +21,10 @@ class Customer < ActiveRecord::Base
   validates :processing_unit, presence: true, length: { in: 8..10 }
   validates :accounting_service, presence: true, length: { in: 8..10 }
   validates :management_unit, presence: true, length: { in: 8..10 }
+
+  def display_value
+    # TODO: testing display_value
+    result = "#{tax_id} #{name}"
+    result = result + " #{description}" unless description == ""
+  end
 end

@@ -31,4 +31,27 @@ class Invoice < ActiveRecord::Base
   validates :invoice_num, presence: true
   validates :invoice_date, presence: true
   validates :amount, presence: true, numericality: true
+
+  after_save :after_save
+
+  def display_value
+    # TODO: Format currency amount
+    # TODO: testing display_value
+    "Customer: #{customer.name}. Subject: #{subject}. Amount: #{amount}"
+  end
+
+  private
+
+  def after_save
+    if created_at == updated_at # best way of known if INSERT or UPDATE
+      invoice_logs.create(
+        action: "Issuer imported CSV and saved XML. #{display_value}",
+        action_code: InvoiceLog::ACTION_SAVE_INVOICE)
+    else
+      # TODO: Inform action what changed
+      invoice_logs.create(
+        action: "Issuer changed invoice. #{display_value}",
+        action_code: InvoiceLog::ACTION_ACTION_INVOICE_SIGNED)
+    end
+  end
 end

@@ -1,0 +1,71 @@
+@import "colors.scss";
+
+body{
+  padding-top: 50px;
+  font-family:'Arial', sans-serif;
+  font-size:14px;
+  color:$background_color;
+  line-height:1.5em;
+}
+
+header{
+  background:$navbar_background_color;
+  color:$title_color;
+  height:80px;
+  margin-bottom:20px;
+
+  h1 {
+    small {
+      color: $grid_color;
+    }
+  }
+}
+
+footer{
+  background:$navbar_background_color;
+  color:$title_color;
+  height:60px;
+  margin-top:20px;
+  text-align: center;
+  padding-top:20px;
+  width: 100%;
+}
+
+#invoices-index {
+  text-align: center;
+}
+
+#invoices-index img{
+  width:100%;
+  padding:3px;
+  border:1px #ccc solid;
+}
+
+#invoices-index h3{
+  height:50px;
+}
+
+#invoices-index .btn{
+  display:block;
+  margin-top:20px;
+}
+
+#invoices-show h2{
+  background:#f4f4f4;
+  padding:10px;
+}
+
+.invoices-show-left{
+  float:left;
+  width:40%;
+}
+
+.invoices-show-right{
+  float:left;
+  width:60%;
+  margin-top:10px;
+}
+
+#invoices-show .btn{
+  margin:20px 0 0 70px;
+}

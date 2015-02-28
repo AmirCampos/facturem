@@ -1,0 +1,7 @@
+<div id="customers-index">
+  <% @customers.each do |customer| %>
+    <div class="row">
+        <h3><%= customer.display_value %></h3>
+    </div>
+  <% end %>
+</div>

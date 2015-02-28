@@ -1,0 +1,166 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 id="facturem">Facturem</h1>
+                <p>An easy Facturae generator for invoincing to the Spanish Administration</p>
+                <p>For generating and signing an invoice, a CSV file must be uploaded. See below CSV file format required.</p>
+                <h1 id="input-csv-input-file-format-version-1-0">Input CSV Input file format. Version 1.0</h1>
+                <h4 id="input-files-for-the-app-must-follow-these-guidelines">Input files for the app must follow these guidelines</h4>
+                <h1 id="description">Description</h1>
+                <p>Every file represents an unique invoice. First cell in file must define version of format. Any file without this first row will be rejected. Currently value for this cell is &ldquo;v1.0&rdquo;. Rest of cells in first row will be ignored. There are different kind of rows for representing:</p>
+                <ol>
+                    <li>Invoice header</li>
+                    <li>Invoice detail (items)</li>
+                    <li>TAX amounts and rates</li>
+                    <li>Invoice totals</li>
+                    <li>(optional) Payment schedule</li>
+                </ol>
+                <p>For representing every row kind, the first column will be a number between 1 and 5. Other columns can act as a headers or comments and will be ignored.</p>
+                <h2 id="ranges">Ranges</h2>
+                <ul>
+                    <li>1 and only 1 row per file:
+                        <ul>
+                            <li>Invoice header</li>
+                            <li>Invoice totals</li>
+                        </ul>
+                    </li>
+                    <li>At least 1 row per file
+                        <ul>
+                            <li>Invoice detail</li>
+                            <li>TAX amounts and rates</li>
+                        </ul>
+                    </li>
+                    <li>Optional
+                        <ul>
+                            <li>Payment schedule</li>
+                        </ul>
+                    </li>
+                </ul>
+                <h2 id="file-format">File Format</h2>
+                <ul>
+                    <li>Codification UTF-8</li>
+                    <li>Field separator: comma &ldquo;,&rdquo;</li>
+                    <li>Quotes. If a field contains separator, it must be surrounded with double quotes.</li>
+                </ul>
+                <h2 id="field-formats">Field Formats</h2>
+                <ul>
+                    <li>Dates:
+                        <ul>
+                            <li>yyyy-mm-dd.* Example: 2015-12-31</li>
+                        </ul>
+                    </li>
+                    <li>Quantities. Positive:
+                        <ul>
+                            <li>No thousands separator.</li>
+                            <li>Decimal separator (if needed) is dot.* Example: 1.23</li>
+                        </ul>
+                    </li>
+                    <li>Quantities. Negative:
+                        <ul>
+                            <li>Minus sign follows first digit.</li>
+                            <li>No thousands separator.</li>
+                            <li>Decimal separator (if needed) is dot.* Example: -1.23</li>
+                        </ul>
+                    </li>
+                    <li>Currency. Positive:
+                        <ul>
+                            <li>No thousands separator.</li>
+                            <li>No currency sign.</li>
+                            <li>Decimal separator (if needed) is dot.</li>
+                            <li>From 2 to 6 decimals.</li>
+                            <li>Example 99.99</li>
+                        </ul>
+                    </li>
+                    <li>Currency. Negative:
+                        <ul>
+                            <li>Minus sign follows first digit.</li>
+                            <li>No thousands separator.</li>
+                            <li>No currency sign.</li>
+                            <li>Decimal separator (if needed) is dot.</li>
+                            <li>From 2 to 6 decimals.</li>
+                            <li>Example: -50.00</li>
+                        </ul>
+                    </li>
+                    <li>Tax rates.
+                        <ul>
+                            <li>Up to 2 decimals.</li>
+                            <li>Decimal separator (if needed) is dot.</li>
+                            <li>Example: 21.00</li>
+                        </ul>
+                    </li>
+                    <li>Discount rates.
+                        <ul>
+                            <li>Up to 4 decimals.</li>
+                            <li>Decimal separator (if needed) is dot.</li>
+                            <li>No % sign</li>
+                            <li>Example: 10.00</li>
+                        </ul>
+                    </li>
+                </ul>
+                <h1 id="row-1-invoice-header">Row 1. Invoice header</h1>
+                <ol>
+                    <li>Fixed value 1</li>
+                    <li>Issuer TAX ID. Must match with configuration.</li>
+                    <li>Customer ID</li>
+                    <li>Customer TAX ID</li>
+                    <li>Customer name</li>
+                    <li>Customer accounting service (oficina contable). Role type = 01</li>
+                    <li>Customer management unit &nbsp;(&oacute;rgano gestor). Role type = 02</li>
+                    <li>Customer processing unit (unidad tramitadora). Role type = 03</li>
+                    <li>Customer address</li>
+                    <li>Customer postal code</li>
+                    <li>Customer town</li>
+                    <li>Customer province</li>
+                    <li>Invoice serie</li>
+                    <li>Invoice number</li>
+                    <li>Invoice date</li>
+                    <li>Invoice subject</li>
+                </ol>
+                <h1 id="row-2-invoice-detail">Row 2. Invoice detail</h1>
+                <ol>
+                    <li>Fixed value 2</li>
+                    <li>Article code</li>
+                    <li>Delivery note number. Optional.</li>
+                    <li>Delivery note date. Optional.</li>
+                    <li>Item description</li>
+                    <li>Quantity</li>
+                    <li>Unit price without tax</li>
+                    <li>Total line</li>
+                    <li>Discount reason (text)</li>
+                    <li>Discount rate</li>
+                    <li>Discount amount</li>
+                    <li>Tax rate</li>
+                    <li>Tax base</li>
+                    <li>Tax amount</li>
+                </ol>
+                <h1 id="row-3-tax-amount-and-rates">Row 3. Tax amount and rates</h1>
+                <ol>
+                    <li>Fixed value 3</li>
+                    <li>Tax rate</li>
+                    <li>Tax base</li>
+                    <li>Tax amount</li>
+                </ol>
+                <h1 id="row-4-invoice-totals">Row 4. Invoice totals</h1>
+                <ol>
+                    <li>Fixed value 4</li>
+                    <li>Total gross amount</li>
+                    <li>General discount reason</li>
+                    <li>General discount rate</li>
+                    <li>Total general discount</li>
+                    <li>Total amount before taxes</li>
+                    <li>Total invoice</li>
+                </ol>
+                <h1 id="row-5-payment-schedule-one-row-for-installment-">Row 5. Payment schedule. One row for installment.</h1>
+                <p>Only transfer to issuer account is supported</p>
+                <ol>
+                    <li>Fixed value 5</li>
+                    <li>Installment due date</li>
+                    <li>Installment due amount</li>
+                    <li>Payment means. Fixed 04 (credit transfer)</li>
+                    <li>Account number to be credited (IBAN)</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
