@@ -36,6 +36,7 @@ class Invoice < ActiveRecord::Base
 
   def display_value
     # TODO: Format currency amount
+    # TODO: testing display_value
     "Customer: #{customer.name}. Subject: #{subject}. Amount: #{amount}"
   end
 

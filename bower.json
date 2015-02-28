@@ -1,0 +1,20 @@
+{
+  "name": "facturem",
+  "version": "0.0.1",
+  "authors": [
+    "mtbtiago <tiago.ameller@gmail.com>"
+  ],
+  "description": "Facturae generator",
+  "license": "MIT",
+  "homepage": "https://github.com/mtbtiago/facturem",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2"
+  }
+}

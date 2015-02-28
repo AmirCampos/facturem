@@ -20,6 +20,7 @@ class CreateInvoices < ActiveRecord::Migration
     add_index :invoices, :issuer_id
     add_index :invoices, [:issuer_id, :customer_id, :invoice_serie, :invoice_num], name: 'ix_customer'
     add_index :invoices, [:issuer_id, :invoice_serie, :invoice_num, :id], name: 'ix_serie_num'
+    # TODO: date -> desc index
     add_index :invoices, [:issuer_id, :invoice_date, :invoice_serie, :invoice_num], name: 'ix_date'
   end
 end
