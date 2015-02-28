@@ -40,7 +40,7 @@ RSpec.describe CSVvalidator, type: :module do
       validator = CSVvalidator::Validator.new("#{Rails.root}/spec/fixtures/1.csv",@xml_generator)
 
       p validator.errors.messages unless validator.valid?
-      expect(@xml_generator.header.customer_name).to eq "Ajuntament Maó"
+      expect(@xml_generator.header.customer_name).to eq "Ajuntament Alaior"
     end
 
     it "should be a valid CSV file. 2.csv Two items. Two taxes. No payments. No discounts" do

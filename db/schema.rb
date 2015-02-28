@@ -42,23 +42,24 @@ ActiveRecord::Schema.define(version: 20150220120643) do
   create_table "invoices", force: :cascade do |t|
     t.integer  "issuer_id"
     t.integer  "customer_id"
+    t.string   "invoice_serie",                          default: ""
     t.string   "invoice_num"
     t.date     "invoice_date"
     t.string   "subject"
-    t.decimal  "amount",       precision: 11, scale: 2, default: 0.0
+    t.decimal  "amount",        precision: 11, scale: 2, default: 0.0
     t.text     "csv"
     t.text     "xml"
     t.text     "xsig"
-    t.boolean  "is_converted",                          default: false
-    t.boolean  "is_signed",                             default: false
-    t.boolean  "is_presented",                          default: false
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
+    t.boolean  "is_converted",                           default: false
+    t.boolean  "is_signed",                              default: false
+    t.boolean  "is_presented",                           default: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
   end
 
-  add_index "invoices", ["issuer_id", "customer_id", "id"], name: "index_invoices_on_issuer_id_and_customer_id_and_id", using: :btree
-  add_index "invoices", ["issuer_id", "invoice_date", "id"], name: "index_invoices_on_issuer_id_and_invoice_date_and_id", using: :btree
-  add_index "invoices", ["issuer_id", "invoice_num", "id"], name: "index_invoices_on_issuer_id_and_invoice_num_and_id", using: :btree
+  add_index "invoices", ["issuer_id", "customer_id", "invoice_serie", "invoice_num"], name: "ix_customer", using: :btree
+  add_index "invoices", ["issuer_id", "invoice_date", "invoice_serie", "invoice_num"], name: "ix_date", using: :btree
+  add_index "invoices", ["issuer_id", "invoice_serie", "invoice_num", "id"], name: "ix_serie_num", using: :btree
   add_index "invoices", ["issuer_id"], name: "index_invoices_on_issuer_id", using: :btree
 
   create_table "issuers", force: :cascade do |t|

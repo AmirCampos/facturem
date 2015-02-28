@@ -39,7 +39,7 @@ RSpec.describe XMLgenerator, type: :module do
     end
 
     it "XML should have customer address" do
-      expect(@xml_generator.header.customer_address).to eq "Plaza Constitución, 1"
+      expect(@xml_generator.header.customer_address).to eq "Plaza des Jaleo, 3"
     end
     
     it "XML should have n detail.lines" do
@@ -133,7 +133,7 @@ RSpec.describe XMLgenerator, type: :module do
     end
 
     it "XML should have customer address" do
-      expect(@xml_generator.header.customer_address).to eq "Plaza Constitución, 1"
+      expect(@xml_generator.header.customer_address).to eq "Plaza des Jaleo, 3"
     end
     
     it "XML should have n detail.lines" do
