@@ -1,21 +1,29 @@
+@import "colors.scss";
+
 body{
   padding-top: 50px;
   font-family:'Arial', sans-serif;
   font-size:14px;
-  color:#666;
+  color:$background_color;
   line-height:1.5em;
 }
 
 header{
-  background:#333;
-  color:#fff;
+  background:$navbar_background_color;
+  color:$title_color;
   height:80px;
   margin-bottom:20px;
+
+  h1 {
+    small {
+      color: $grid_color;
+    }
+  }
 }
 
 footer{
-  background:#333;
-  color:#fff;
+  background:$navbar_background_color;
+  color:$title_color;
   height:60px;
   margin-top:20px;
   text-align: center;
@@ -25,7 +33,6 @@ footer{
 
 #invoices-index {
   text-align: center;
-
 }
 
 #invoices-index img{
@@ -62,4 +69,3 @@ footer{
 #invoices-show .btn{
   margin:20px 0 0 70px;
 }
-
