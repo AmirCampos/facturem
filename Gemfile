@@ -30,6 +30,9 @@ gem 'nokogiri'
 # https://github.com/alphasights/iban-tools
 gem 'iban-tools'
 
+gem "datagrid", :git => "git://github.com/bogdan/datagrid.git"
+
+
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
@@ -63,3 +66,5 @@ group :development, :test do
 
 end
 
+
+gem 'kaminari'
