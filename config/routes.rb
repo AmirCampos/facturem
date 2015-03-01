@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'invoices#index'
+  get 'customers' => 'customers#index'
+  get 'help' => 'help#index'
 
   get 'invoices/index'
   get 'invoices/show'
@@ -8,8 +10,6 @@ Rails.application.routes.draw do
   get 'customers/index'
 
   get 'help/index'
-  get 'help' => 'help#index'
-  get 'customers' => 'customers#index'
 
   resources :invoices
 end
