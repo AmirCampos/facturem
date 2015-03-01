@@ -8,17 +8,32 @@ body{
   line-height:1.5em;
 }
 
-header{
+.navbar-default {
   background:$navbar_background_color;
   color:$title_color;
-  height:80px;
-  margin-bottom:20px;
+}
 
-  h1 {
-    small {
-      color: $grid_color;
-    }
-  }
+.navbar-brand {
+  color:$title_color !important;
+}
+
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+  color: $title_color;
+}
+
+.navbar-default .navbar-nav>li>a  {
+  color: $background_color;
+}
+
+.toggle_link:hover {
+  color: $title_color;
+  // font-weight: bolder;
+}
+
+.datagrid {
+  margin-top: 24px;
 }
 
 footer{
@@ -31,41 +46,41 @@ footer{
   width: 100%;
 }
 
-#invoices-index {
-  text-align: center;
-}
+// #invoices-index {
+//   text-align: center;
+// }
 
-#invoices-index img{
-  width:100%;
-  padding:3px;
-  border:1px #ccc solid;
-}
+// #invoices-index img{
+//   width:100%;
+//   padding:3px;
+//   border:1px #ccc solid;
+// }
 
-#invoices-index h3{
-  height:50px;
-}
+// #invoices-index h3{
+//   height:50px;
+// }
 
-#invoices-index .btn{
-  display:block;
-  margin-top:20px;
-}
+// #invoices-index .btn{
+//   display:block;
+//   margin-top:20px;
+// }
 
-#invoices-show h2{
-  background:#f4f4f4;
-  padding:10px;
-}
+// #invoices-show h2{
+//   background:#f4f4f4;
+//   padding:10px;
+// }
 
-.invoices-show-left{
-  float:left;
-  width:40%;
-}
+// .invoices-show-left{
+//   float:left;
+//   width:40%;
+// }
 
-.invoices-show-right{
-  float:left;
-  width:60%;
-  margin-top:10px;
-}
+// .invoices-show-right{
+//   float:left;
+//   width:60%;
+//   margin-top:10px;
+// }
 
-#invoices-show .btn{
-  margin:20px 0 0 70px;
-}
+// #invoices-show .btn{
+//   margin:20px 0 0 70px;
+// }
