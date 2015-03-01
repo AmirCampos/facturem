@@ -19,6 +19,8 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <%= link_to 'Facturem', root_path, class: "navbar-brand" %>
+      <span class="navbar-text glyphicon glyphicon-briefcase company_name"></span>
+      <p class="navbar-text company_name"><%= Issuer.first.company_name %></p>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -40,13 +42,18 @@
           <%= link_to 'How to create CSV files', help_path, class: "toggle_link" %>
       </li>
       </ul>
-      <p class="navbar-text company_name"><%= Issuer.first.company_name %></p>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tasks<span class="caret"></span></a>
             <ul class="dropdown-menu navbar-right" role="menu">
                 <li>
+                    <%=link_to "Browse invoices", root_path %>
+                </li>
+                <li>
                     <%=link_to "Upload invoice", new_invoice_path %>
+                </li>
+                <li>
+                    <%=link_to "How to create CSV files", help_path %>
                 </li>
                 <li>
                     <%=link_to "Browse Customers", customers_path %>
