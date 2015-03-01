@@ -35,8 +35,12 @@ class InvoicesController < ApplicationController
   end
 
   def index
-    @issuer = Issuer.first
-    @invoices = @issuer.invoices.all.order(invoice_date: :desc)
+    issuer = Issuer.first
+    # @invoices = @issuer.invoices.all.order(invoice_date: :desc)
+    # aparams = .merge(issuer_id: issuer.id)
+    @grid = InvoicesGrid.new(params[:invoices_grid]) do |scope|
+      scope.page(params[:page])
+    end
   end
 
   def show

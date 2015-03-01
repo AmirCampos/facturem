@@ -34,10 +34,22 @@ class Invoice < ActiveRecord::Base
 
   after_save :after_save
 
+  scope :signed, -> { where(is_signed: true) }  
+  scope :presented, -> { where(is_presented: true) }  
+
   def display_value
     # TODO: Format currency amount
     # TODO: testing display_value
     "Customer: #{customer.name}. Subject: #{subject}. Amount: #{amount}"
+  end
+
+  def customer_name
+    customer.name
+  end
+
+  def invoice_number
+    # TODO: testing invoice_number
+    (invoice_serie == "" ? invoice_num : invoice_serie+"/"+invoice_num)
   end
 
   private
@@ -51,7 +63,7 @@ class Invoice < ActiveRecord::Base
       # TODO: Inform action what changed
       invoice_logs.create(
         action: "Issuer changed invoice. #{display_value}",
-        action_code: InvoiceLog::ACTION_ACTION_INVOICE_SIGNED)
+        action_code: InvoiceLog::ACTION_INVOICE_SIGNED)
     end
   end
 end
