@@ -46,41 +46,7 @@ footer{
   width: 100%;
 }
 
-// #invoices-index {
-//   text-align: center;
-// }
-
-// #invoices-index img{
-//   width:100%;
-//   padding:3px;
-//   border:1px #ccc solid;
-// }
-
-// #invoices-index h3{
-//   height:50px;
-// }
-
-// #invoices-index .btn{
-//   display:block;
-//   margin-top:20px;
-// }
-
-// #invoices-show h2{
-//   background:#f4f4f4;
-//   padding:10px;
-// }
-
-// .invoices-show-left{
-//   float:left;
-//   width:40%;
-// }
-
-// .invoices-show-right{
-//   float:left;
-//   width:60%;
-//   margin-top:10px;
-// }
-
-// #invoices-show .btn{
-//   margin:20px 0 0 70px;
-// }
+.company_name {
+  color: $title_color !important;
+  font-size: 1.5em;
+}
