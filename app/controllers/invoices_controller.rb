@@ -1,16 +1,43 @@
 class InvoicesController < ApplicationController
   def new
     @page_title = 'Upload invoice'
-    @invoice = Invoice.new
+    # TODO: QUESTION where put current issuer?
+    @issuer = Issuer.first
   end
 
   def create
-    @invoice = Invoice.new(get_params)
-    @invoice.save
+    csv = get_params[:csv]
+    # TODO: change disk file by stream
+    csv_file_name = "#{Rails.root}/tmp/tmp.csv"
+    File.open(csv_file_name, 'w') { |file| file.write(csv) }
 
-    flash[:notice] = 'Invoice uploaded'
+    @xml_generator = XMLgenerator::Generator.new
+    @validator = CSVvalidator::Validator.new(csv_file_name,@xml_generator)
+    if !@validator.validate?
+      flash[:error] = "Please, check errors"
+      render('new')
+    end
 
-    redirect_to invoices_path
+    xml = @xml_generator.generate_xml
+
+    @invoice = @issuer.invoices.new
+    @invoice.customer_id = @xml_generator.header.customer.id
+    @invoice.invoice_serie = @xml_generator.header.invoice_serie
+    @invoice.invoice_num = @xml_generator.header.invoice_number
+    @invoice.invoice_date = @xml_generator.header.invoice_date
+    @invoice.subject = @xml_generator.header.invoice_subject
+    @invoice.amount = @xml_generator.total.total_invoice
+    @invoice.csv = csv
+    @invoice.xml = xml
+
+    if @invoice.save
+      redirect_to(action: 'index')
+      flash[:notice] = "Invoice uploaded successfully"
+      render('show') # show just uploaded invoice
+    else
+      flash[:error] = "Please, check errors"
+      render('new')
+    end
   end
 
   def update
@@ -49,6 +76,6 @@ class InvoicesController < ApplicationController
 
   private
     def get_params
-    # params.require(:invoice).permit(:title, :category_id, :author_id, :publisher_id, :isbn, :price, :buy, :format, :excerpt, :pages, :year, :coverpath)
+    params.require(:invoice).permit(:csv)
   end
 end
