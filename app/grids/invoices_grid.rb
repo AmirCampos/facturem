@@ -6,7 +6,7 @@ class InvoicesGrid
 
   scope do
     # TODO: current isssuer
-    Issuer.first.invoices.all.order(invoice_date: :desc)
+    Invoice.order(invoice_date: :desc)
   end
 
   column(:customer_name)

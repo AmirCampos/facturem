@@ -20,7 +20,7 @@
     <div class="navbar-header">
       <%= link_to 'Facturem', root_path, class: "navbar-brand" %>
       <span class="navbar-text glyphicon glyphicon-briefcase company_name"></span>
-      <p class="navbar-text company_name"><%= Issuer.first.company_name %></p>
+      <p class="navbar-text company_name"><%= "#{Issuer.first.tax_id} | #{Issuer.first.company_name}" %></p>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>

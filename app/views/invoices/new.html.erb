@@ -1,2 +1,9 @@
 <h1>Invoices#new</h1>
 <p>Find me in app/views/invoices/new.html.erb</p>
+
+<%= form_for @invoice, html: {multipart: true} do |f| %>
+  <%= f.file_field :csv %>
+  <%= f.submit "Submit", class:'btn btn-primary' %>
+  <%=link_to "Cancel", invoices_path, class:'btn btn-default' %>
+<% end %>
+
