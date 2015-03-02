@@ -72,17 +72,27 @@
     </div>
     <div class="col-md-3 vertical_buttons_group">
         <ul class="list-unstyled">
-            <li><a href="#" class="btn btn-success action_button">Download original CSV file</a>
+            <li><%=link_to 'Download original CSV file', invoices_download_csv_path(@invoice), class: "btn btn-success action_button"%>
             </li>
-            <li><a href="#" class="btn btn-warning action_button">Download XML unsigned file</a>
+            <li><%=link_to 'Download unsigned XML file', invoices_download_xml_path(@invoice), class: "btn btn-warning action_button"%>
             </li>
             <li><a href="#" class="btn btn-danger action_button">Sign file</a>
             </li>
-            <li><a href="#" class="btn btn-primary action_button">Download XML signed file</a>
-            </li>
-            <li><a href="#" class="btn btn-danger action_button">Send to administration</a>
-            </li>
-            <li><a href="#" class="btn btn-warning action_button">Download as rendered PDF</a>
+            <%if @invoice.is_signed%>     
+              <li><%=link_to 'Download XSIG signed file', invoices_download_xsig_path(@invoice), class: "btn btn-primary action_button"%>
+              </li>
+            <%else%>
+              <li><%=link_to 'Download XSIG signed file', invoices_download_xsig_path(@invoice), class: "btn btn-primary action_button", disabled: "disabled"%>
+              </li>
+            <%end%>
+            <%if @invoice.is_signed%>     
+              <li><%=link_to 'Send to administration', invoices_sign_path(@invoice), class: "btn btn-danger action_button"%>
+              </li>
+            <%else%>
+              <li><%=link_to 'Send to administration', invoices_sign_path(@invoice), class: "btn btn-danger action_button", disabled: "disabled"%>
+              </li>
+            <%end%>
+            <li><%=link_to 'Download as rendered PDF', invoices_render_pdf_path(@invoice), class: "btn btn-warning action_button"%>
             </li>
         </ul>
     </div>

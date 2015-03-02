@@ -83,4 +83,50 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def download_csv
+    invoice = Invoice.find(params[:id])
+    file_name = build_tmp_file_name(invoice, "csv")
+    send_file(
+      file_name,
+      type: "application/csv",
+      x_sendfile: true
+    )
+  end
+
+  def download_xml
+    invoice = Invoice.find(params[:id])
+    file_name = build_tmp_file_name(invoice, "xml")
+    send_file(
+      file_name,
+      type: "application/xml",
+      x_sendfile: true
+    )
+  end
+
+  def download_xsig
+    invoice = Invoice.find(params[:id])
+    file_name = build_tmp_file_name(invoice, "xsig")
+    send_file(
+      file_name,
+      type: "application/xsig",
+      x_sendfile: true
+    )
+  end
+
+  def sign
+    # TODO: sign
+  end
+
+  def render_pdf
+    # TODO: render_pdf
+  end
+
+  private
+
+  def build_tmp_file_name(invoice, ext)
+    field = invoice.attributes[ext]
+    file_name = "#{Rails.root}/tmp/invoice_#{invoice.id}.#{ext}"
+    File.open(file_name, 'w') { |file| file.write(field) }
+    file_name
+  end
 end
