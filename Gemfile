@@ -29,9 +29,10 @@ gem 'nokogiri'
 # Use ActiveModel has_secure_password
 # https://github.com/alphasights/iban-tools
 gem 'iban-tools'
-
+# https://github.com/bogdan/datagrid/wiki
 gem "datagrid", :git => "git://github.com/bogdan/datagrid.git"
-
+#http://fortawesome.github.io/Font-Awesome/get-started/
+gem 'font-awesome-sass'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server

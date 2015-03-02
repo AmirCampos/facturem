@@ -1,4 +1,6 @@
 @import "colors.scss";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 body{
   padding-top: 50px;
@@ -67,4 +69,15 @@ footer{
   text-align: center;
   padding-top:20px;
   width: 100%;
+}
+
+.my_button {
+  font-size: 1.2em;
+  a {
+    color: inherit;
+    margin-left: 2px;
+  }
+  .glyphicon {
+    margin-right: 0; 
+  }
 }
