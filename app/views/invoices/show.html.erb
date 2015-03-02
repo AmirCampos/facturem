@@ -85,7 +85,7 @@
           <li>
             <div class="btn btn-danger action_button my_button" <%=(@invoice.is_signed ? 'disabled="disabled"' : '')%> >
               <span class="glyphicon glyphicon-ok"></span>
-              <%=link_to 'Sign invoice', invoices_sign_path(@invoice), disabled: "disabled"%>
+              <%=link_to 'Sign invoice', invoices_sign_path(@invoice)%>
             </div>
           </li>
           <li>

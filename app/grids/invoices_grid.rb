@@ -26,8 +26,7 @@ class InvoicesGrid
   end
 
   column(:Sign, :html => true) do |record|
-    # TODO: path to sign
-    link_to "Sign invoice", invoice_path(record)
+    (record.is_signed ? "already signed" : link_to("Sign invoice",invoices_sign_path(record)))
   end
 
   def column_class(invoice)
