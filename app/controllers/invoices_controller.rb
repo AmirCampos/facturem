@@ -114,11 +114,11 @@ class InvoicesController < ApplicationController
   end
 
   def sign
-    # TODO: sign
+    render 'shared/not_implemented'
   end
 
   def render_pdf
-    # TODO: render_pdf
+    render 'shared/not_implemented'
   end
 
   private
