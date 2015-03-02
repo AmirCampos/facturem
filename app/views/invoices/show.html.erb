@@ -1,2 +1,99 @@
-<h1>Invoices#show</h1>
-<p>Find me in app/views/invoices/show.html.erb</p>
+<div class="row invoice_show">
+    <div class="col-md-9 invoice_box">
+        <div>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Customer</td>
+                        <td>
+                            <h2 class="lead"><%=@invoice.customer_name%></h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Subject</td>
+                        <td>
+                            <%=@invoice.header.invoice_subject%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Processing unit</td>
+                        <td>
+                            <%=@invoice.header.customer_processing_unit%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Accounting service</td>
+                        <td>
+                            <%=@invoice.header.customer_management_unit%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Management unit</td>
+                        <td>
+                            <%=@invoice.header.customer_processing_unit%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Invoice number</td>
+                        <td>
+                            <%=@invoice.invoice_number%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Invoice date</td>
+                        <td>
+                            <%=@invoice.invoice_date%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Invoice amount</td>
+                        <td class="lead">
+                            <%=@invoice.total.total_invoice%>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="small">
+                <span>
+                  <%unless @invoice.is_signed || @invoice.is_presented%>
+                    <%=link_to 'Delete invoice', invoice_path(@invoice), method: :delete, data: {confirm: 'Are you sure?'}%>
+                  <%end%>
+                </span>
+                <span class="text-rigth">
+                  <%if @invoice.is_signed%>
+                  <div class="signed_class"><span class="glyphicon glyphicon-ok"></span> Signed</div>
+                  <%end%>
+                  <%if @invoice.is_presented%>
+                  <div class="presented_class"><span class="glyphicon glyphicon-send"></span> Sent</div>
+                  <%end%>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-3 vertical_buttons_group">
+        <ul class="list-unstyled">
+            <li><a href="#" class="btn btn-success action_button">Download original CSV file</a>
+            </li>
+            <li><a href="#" class="btn btn-warning action_button">Download XML unsigned file</a>
+            </li>
+            <li><a href="#" class="btn btn-danger action_button">Sign file</a>
+            </li>
+            <li><a href="#" class="btn btn-primary action_button">Download XML signed file</a>
+            </li>
+            <li><a href="#" class="btn btn-danger action_button">Send to administration</a>
+            </li>
+            <li><a href="#" class="btn btn-warning action_button">Download as rendered PDF</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row invoice_box">
+    <div class="col-md-12">
+        <%@invoice.invoice_logs.each do |log|%>
+            <div class="row">
+                <mark><%=log.created_at%></mark><span>: <%=log.action%></span>
+            </div>
+            <%end%>
+
+    </div>
+</div>

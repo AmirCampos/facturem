@@ -3,7 +3,7 @@
 
 <head>
     <title>
-        <%= @page_title ? @page_title : 'Welcome' %> | Facturem</title>
+        <%= @page_title ? @page_title : 'Invoices' %> | Facturem</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +20,7 @@
     <div class="navbar-header">
       <%= link_to 'Facturem', root_path, class: "navbar-brand" %>
       <span class="navbar-text glyphicon glyphicon-briefcase company_name"></span>
-      <p class="navbar-text company_name"><%= Issuer.first.company_name %></p>
+      <p class="navbar-text company_name"><%= "#{Issuer.first.tax_id} | #{Issuer.first.company_name}" %></p>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -92,8 +92,8 @@
     </section>
 
     <footer class="footer navbar-fixed-bottom">
-        <div class="container">
-            <p>Made at Ironhack Jan-March 2015</p>
+        <div class="container legal">
+            <p>Made at Ironhack Jan-March 2015 | <a href="#">Legal info</a></p>
         </div>
     </footer>
 

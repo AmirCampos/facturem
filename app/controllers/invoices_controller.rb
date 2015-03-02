@@ -1,16 +1,49 @@
+require 'csv_validator'
+require 'xml_generator'
+
 class InvoicesController < ApplicationController
   def new
     @page_title = 'Upload invoice'
-    @invoice = Invoice.new
+    @issuer = Issuer.first
+    @invoice = @issuer.invoices.new
   end
 
   def create
-    @invoice = Invoice.new(get_params)
-    @invoice.save
+    @issuer = Issuer.first
+    @invoice = @issuer.invoices.new
+    if params[:invoice] == nil
+      flash[:alert] = "Please, select a valid file"
+      render('new')
+      return
+    end
+      
+    @invoice.csv = params[:invoice][:csv].read
+    @xml_generator = XMLgenerator::Generator.new
+    @validator = CSVvalidator::Validator.new(@invoice.csv,@xml_generator)
+    unless @validator.valid?
+      flash[:alert] = "Please, check errors"
+      render('new')
+      return
+    end
 
-    flash[:notice] = 'Invoice uploaded'
+    xml = @xml_generator.generate_xml
 
-    redirect_to invoices_path
+    @invoice.customer_id = @xml_generator.header.customer.id
+    @invoice.invoice_serie = @xml_generator.header.invoice_serie
+    @invoice.invoice_num = @xml_generator.header.invoice_number
+    @invoice.invoice_date = @xml_generator.header.invoice_date
+    @invoice.subject = @xml_generator.header.invoice_subject
+    @invoice.amount = @xml_generator.total.total_invoice
+    @invoice.xml = xml
+
+    if @invoice.save
+      flash[:notice] = "Invoice uploaded successfully"
+      # render('show') # show just uploaded invoice
+      redirect_to invoice_path(@invoice)
+    else
+      flash[:error] = "Please, check errors"
+      render('new')
+    end
   end
 
   def update
@@ -39,16 +72,16 @@ class InvoicesController < ApplicationController
     # @invoices = @issuer.invoices.all.order(invoice_date: :desc)
     # aparams = .merge(issuer_id: issuer.id)
     @grid = InvoicesGrid.new(params[:invoices_grid]) do |scope|
-      scope.page(params[:page])
+      scope.where(issuer_id: Issuer.first.id).page(params[:page])
     end
   end
 
   def show
     @invoice = Invoice.find(params[:id])
+    unless @invoice.is_valid_xml
+      flash[:error] = "Internal error in this invoice"
+      redirect_to invoices_path
+    end
   end
 
-  private
-    def get_params
-    # params.require(:invoice).permit(:title, :category_id, :author_id, :publisher_id, :isbn, :price, :buy, :format, :excerpt, :pages, :year, :coverpath)
-  end
 end

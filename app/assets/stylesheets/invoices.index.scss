@@ -1,0 +1,16 @@
+// Place all the styles related to the Invoices controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "colors.scss";
+
+.unsigned {
+  color: $grid_color;
+  // color: $selected_color;
+  font-weight: bolder;
+}
+
+.signed {
+  color: $grid_color;
+}
+

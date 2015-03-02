@@ -6,7 +6,7 @@ class InvoicesGrid
 
   scope do
     # TODO: current isssuer
-    Issuer.first.invoices.all.order(invoice_date: :desc)
+    Invoice.order(invoice_date: :desc)
   end
 
   column(:customer_name)
@@ -31,7 +31,7 @@ class InvoicesGrid
   end
 
   def column_class(invoice)
-    (invoice.is_signed ? "green" : "red")
+    (invoice.is_signed ? "signed" : "unsigned")
   end
 
 end

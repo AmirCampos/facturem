@@ -1,0 +1,40 @@
+// Place all the styles related to the Invoices controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "colors.scss";
+
+.vertical_buttons_group {
+  margin-top: $default_margin_top;
+}
+
+.unsigned {
+  color: $grid_color;
+  // color: $selected_color;
+  font-weight: bolder;
+}
+
+.signed {
+  color: $grid_color;
+}
+
+.invoice_box {
+  margin-top: $default_margin_top;
+  border-style: solid;
+  border-width: medium;
+  border-color: $grid_color;
+  padding: 10px;  
+}
+
+.action_button {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.presented_class {
+  color: red;
+}
+
+.signed_class {
+  color: blue;
+}

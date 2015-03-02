@@ -25,8 +25,8 @@ module CSVvalidator
 
     validate :do_validations
 
-    def initialize(file_name, xml_generator)
-      @file_name = file_name
+    def initialize(raw_csv, xml_generator)
+      @raw_csv = raw_csv
       @xml_generator = xml_generator
     end
 
@@ -38,7 +38,10 @@ module CSVvalidator
       @xml_generator.clear
       row_counter = 1
       begin
-        CSV.foreach(@file_name) do |row|
+        if @raw_csv == ""
+          raise CSV::MalformedCSVError
+        end
+        CSV.parse(@raw_csv) do |row|
           col_count = row.length
           if col_count < COL_COUNT
             CSVvalidator.add_error(self,row_counter,:file,"Column count #{col_count} is less than minimum #{COL_COUNT}")
@@ -59,9 +62,9 @@ module CSVvalidator
           row_counter += 1
         end
       rescue CSV::MalformedCSVError
-        errors.add(:file, "#{@file_name} is not a valid CSV file")
+        errors.add(:file, "#{@raw_csv} is not a valid CSV file")
       rescue Errno::ENOENT
-        errors.add(:file, "#{@file_name} does not exist")
+        errors.add(:file, "#{@raw_csv} does not exist")
       end
     end
   end

@@ -4,11 +4,16 @@
 
 @import "colors.scss";
 
-.red {
-  color: $selected_color;
+.unsigned {
+  color: $grid_color;
+  // color: $selected_color;
   font-weight: bolder;
 }
 
-.green {
+.signed {
   color: $grid_color;
+}
+
+.submit_cancel {
+  margin-top: $default_margin_top;
 }

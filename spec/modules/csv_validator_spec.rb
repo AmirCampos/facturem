@@ -11,10 +11,13 @@ RSpec.describe CSVvalidator, type: :module do
       issuer.save
 
       @xml_generator = XMLgenerator::Generator.new
+      @raw_csv_1 = IO.read("#{Rails.root}/spec/fixtures/1.csv")
+      @raw_csv_2 = IO.read("#{Rails.root}/spec/fixtures/2.csv")
+      @raw_csv_3 = IO.read("#{Rails.root}/spec/fixtures/3.csv")
     end
 
     it "should be a valid CSV file. 1.csv One item. One tax. No payments. No discounts" do
-      validator = CSVvalidator::Validator.new("#{Rails.root}/spec/fixtures/1.csv",@xml_generator)
+      validator = CSVvalidator::Validator.new(@raw_csv_1,@xml_generator)
 
       p validator.errors.messages unless validator.valid?
       # expect(validator.errors.messages.length).to eq 0
@@ -22,7 +25,7 @@ RSpec.describe CSVvalidator, type: :module do
     end
 
     it "should create a non existing customer. '41495761N' 1.csv" do
-      validator = CSVvalidator::Validator.new("#{Rails.root}/spec/fixtures/1.csv",@xml_generator)
+      validator = CSVvalidator::Validator.new(@raw_csv_1,@xml_generator)
 
       p validator.errors.messages unless validator.valid?
       customer = Customer.find_by(tax_id: "41495761N")
@@ -37,14 +40,14 @@ RSpec.describe CSVvalidator, type: :module do
         accounting_service: Faker::Number.number(10).to_s,
         management_unit: Faker::Number.number(10).to_s)
 
-      validator = CSVvalidator::Validator.new("#{Rails.root}/spec/fixtures/1.csv",@xml_generator)
+      validator = CSVvalidator::Validator.new(@raw_csv_1,@xml_generator)
 
       p validator.errors.messages unless validator.valid?
       expect(@xml_generator.header.customer_name).to eq "Ajuntament Alaior"
     end
 
     it "should be a valid CSV file. 2.csv Two items. Two taxes. No payments. No discounts" do
-      validator = CSVvalidator::Validator.new("#{Rails.root}/spec/fixtures/2.csv",@xml_generator)
+      validator = CSVvalidator::Validator.new(@raw_csv_2,@xml_generator)
 
       p validator.errors.messages unless validator.valid?
       # expect(validator.errors.messages.length).to eq 0
@@ -52,29 +55,30 @@ RSpec.describe CSVvalidator, type: :module do
     end
 
     it "should be a valid CSV file. 3.csv Two items. Two taxes. With payments. Both discounts" do
-      validator = CSVvalidator::Validator.new("#{Rails.root}/spec/fixtures/3.csv",@xml_generator)
+      validator = CSVvalidator::Validator.new(@raw_csv_3,@xml_generator)
 
       p validator.errors.messages unless validator.valid?
       # expect(validator.errors.messages.length).to eq 0
       expect(validator.valid?).to be_truthy
     end
 
-    it "should handle a non existing CSV file" do
-      validator = CSVvalidator::Validator.new("#{Rails.root}/spec/fixtures/not_exist.csv",@xml_generator)
+    it "should handle an empty file" do
+      validator = CSVvalidator::Validator.new("",@xml_generator)
 
       expect(validator.valid?).to be_falsy
       expect(validator.errors.messages).to include(:file)
     end
 
     it "should handle a non CSV file. is_not_a_csv.xml" do
-      validator = CSVvalidator::Validator.new("#{Rails.root}/spec/fixtures/is_not_a_csv.xml",@xml_generator)
+      validator = CSVvalidator::Validator.new(IO.read("#{Rails.root}/spec/fixtures/is_not_a_csv.xml"),@xml_generator)
 
       expect(validator.valid?).to be_falsy
       expect(validator.errors.messages).to include(:file)
     end
 
     it "should be a not supported version. bad_version.csv" do
-      validator = CSVvalidator::Validator.new("#{Rails.root}/spec/fixtures/bad_version.csv",@xml_generator)
+      bad_version = IO.read("#{Rails.root}/spec/fixtures/bad_version.csv")
+      validator = CSVvalidator::Validator.new(bad_version,@xml_generator)
 
       expect(validator.valid?).to be_falsy
       # expect(validator.errors.messages).to include(:version)
