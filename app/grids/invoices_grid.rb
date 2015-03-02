@@ -31,7 +31,7 @@ class InvoicesGrid
   end
 
   def column_class(invoice)
-    (invoice.is_signed ? "green" : "red")
+    (invoice.is_signed ? "signed" : "unsigned")
   end
 
 end

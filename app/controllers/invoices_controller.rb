@@ -4,7 +4,6 @@ require 'xml_generator'
 class InvoicesController < ApplicationController
   def new
     @page_title = 'Upload invoice'
-    # TODO: QUESTION where put current issuer?
     @issuer = Issuer.first
     @invoice = @issuer.invoices.new
   end
@@ -19,10 +18,6 @@ class InvoicesController < ApplicationController
     end
       
     @invoice.csv = params[:invoice][:csv].read
-    # TODO: change disk file by stream
-    # csv_file_name = "#{Rails.root}/tmp/tmp.csv"
-    # File.open(csv_file_name, 'w') { |file| file.write(csv) }
-
     @xml_generator = XMLgenerator::Generator.new
     @validator = CSVvalidator::Validator.new(@invoice.csv,@xml_generator)
     unless @validator.valid?
@@ -83,6 +78,10 @@ class InvoicesController < ApplicationController
 
   def show
     @invoice = Invoice.find(params[:id])
+    unless @invoice.is_valid_xml
+      flash[:error] = "Internal error in this invoice"
+      redirect_to invoices_path
+    end
   end
 
 end

@@ -19,6 +19,8 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
+require 'csv_validator'
+require 'xml_generator'
 
 class Invoice < ActiveRecord::Base
   has_many :invoice_logs
@@ -33,9 +35,17 @@ class Invoice < ActiveRecord::Base
   validates :amount, presence: true, numericality: true
 
   after_save :after_save
+  after_find :after_find
 
   scope :signed, -> { where(is_signed: true) }  
   scope :presented, -> { where(is_presented: true) }  
+
+  attr_reader :is_valid_xml
+  attr_reader :header
+  attr_reader :detail_list
+  attr_reader :tax_list
+  attr_reader :total
+  attr_reader :installment_list
 
   def display_value
     # TODO: Format currency amount
@@ -64,6 +74,20 @@ class Invoice < ActiveRecord::Base
       invoice_logs.create(
         action: "Issuer changed invoice. #{display_value}",
         action_code: InvoiceLog::ACTION_INVOICE_SIGNED)
+    end
+  end
+
+  def after_find
+    # TODO: Testing after_find
+    xml_generator = XMLgenerator::Generator.new
+    validator = CSVvalidator::Validator.new(csv,xml_generator)
+    @is_valid_xml = validator.valid?
+    if @is_valid_xml
+      @header           = xml_generator.header
+      @detail_list      = xml_generator.detail_list
+      @tax_list         = xml_generator.tax_list
+      @total            = xml_generator.total
+      @installment_list = xml_generator.installment_list
     end
   end
 end

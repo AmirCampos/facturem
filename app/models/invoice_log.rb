@@ -17,5 +17,9 @@ class InvoiceLog < ActiveRecord::Base
   ACTION_INVOICE_PRESENTED = 2
   ACTION_INVOICE_RENDERED  = 3
   
-  belongs_to :invoices
+  belongs_to :invoice
+
+  def display_value
+    "#{created_at}: #{action}"
+  end
 end

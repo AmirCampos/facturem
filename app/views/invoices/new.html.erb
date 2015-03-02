@@ -1,9 +1,11 @@
-<h1>Invoices#new</h1>
-<p>Find me in app/views/invoices/new.html.erb</p>
+<h2>Select a CSV file for creating an invoice</h2>
+<h3><%=link_to 'More info about how to create this files with Excel', help_path%></h3>
 
 <%= form_for @invoice, html: {multipart: true} do |f| %>
   <%= f.file_field :csv %>
+  <div class="submit_cancel">
   <%= f.submit "Submit", class:'btn btn-primary' %>
   <%=link_to "Cancel", invoices_path, class:'btn btn-default' %>
+  </div>
 <% end %>
 
