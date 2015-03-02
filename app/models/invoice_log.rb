@@ -16,6 +16,7 @@ class InvoiceLog < ActiveRecord::Base
   ACTION_INVOICE_SIGNED    = 1
   ACTION_INVOICE_PRESENTED = 2
   ACTION_INVOICE_RENDERED  = 3
+  ACTION_INVOICE_CHANGED   = 4
   
   belongs_to :invoice
 

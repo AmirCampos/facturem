@@ -1,11 +1,30 @@
-<h2>Select a CSV file for creating an invoice</h2>
-<h3><%=link_to 'More info about how to create this files with Excel', help_path%></h3>
+<div class="row invoice_box">
+    <div class="col-md-12">
+        <h2>Select a CSV file for creating an invoice</h2>
+        <h3><%=link_to 'More info about how to create this files with Excel', help_path%></h3>
 
-<%= form_for @invoice, html: {multipart: true} do |f| %>
-  <%= f.file_field :csv %>
-  <div class="submit_cancel">
-  <%= f.submit "Submit", class:'btn btn-primary' %>
-  <%=link_to "Cancel", invoices_path, class:'btn btn-default' %>
-  </div>
-<% end %>
+        <%=form_for @invoice, html: {multipart: true} do |f|%>
+            <%=f.file_field :csv%>
+                <div class="submit_cancel">
+                    <%=f.submit "Submit", class: 'btn btn-primary'%>
+                        <%=link_to "Cancel", invoices_path, class: 'btn btn-default'%>
+                </div>
+                <%end%>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <%if flash[:alert]%>
+            <div class="row invoice_box error_box">
+                <div class="col-md-12">
+                    <%@errors.each do |error|%>
+                        <div class="row">
+                            <%=error%>
+                        </div>
+                        <%end%>
 
+                </div>
+            </div>
+            <%end%>
+    </div>
+</div>

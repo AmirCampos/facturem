@@ -37,8 +37,8 @@ class Invoice < ActiveRecord::Base
   after_save :after_save
   after_find :after_find
 
-  scope :signed, -> { where(is_signed: true) }  
-  scope :presented, -> { where(is_presented: true) }  
+  scope :signed, -> { where(is_signed: true) }
+  scope :presented, -> { where(is_presented: true) }
 
   attr_reader :is_valid_xml
   attr_reader :header
@@ -65,15 +65,24 @@ class Invoice < ActiveRecord::Base
   private
 
   def after_save
-    if created_at == updated_at # best way of known if INSERT or UPDATE
+    if created_at == updated_at # best way of known it's INSERT, not UPDATE
       invoice_logs.create(
         action: "Issuer imported CSV and saved XML. #{display_value}",
-        action_code: InvoiceLog::ACTION_SAVE_INVOICE)
+      action_code: InvoiceLog::ACTION_SAVE_INVOICE)
     else
-      # TODO: Inform action what changed
-      invoice_logs.create(
-        action: "Issuer changed invoice. #{display_value}",
+      if is_signed_changed?
+        invoice_logs.create(
+          action: "Issuer SIGNED invoice. #{display_value}",
         action_code: InvoiceLog::ACTION_INVOICE_SIGNED)
+      elsif is_presented_changed?
+        invoice_logs.create(
+          action: "Issuer PRESENTED invoice. #{display_value}",
+        action_code: InvoiceLog::ACTION_INVOICE_PRESENTED)
+      else
+        invoice_logs.create(
+          action: "Issuer changed invoice. Changed fields: #{changed.to_s}",
+        action_code: InvoiceLog::ACTION_INVOICE_CHANGED)
+      end
     end
   end
 

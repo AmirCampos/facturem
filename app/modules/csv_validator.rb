@@ -53,6 +53,7 @@ module CSVvalidator
                 CSVvalidator.add_error(self,row_counter,k,v)
               end
               if row_counter == 1
+                row_counter = 2 # skip MalformedCSVError
                 break
               end
             else
@@ -61,10 +62,12 @@ module CSVvalidator
           end
           row_counter += 1
         end
+        # TODO: test malformed file
+        raise CSV::MalformedCSVError unless row_counter > 1
       rescue CSV::MalformedCSVError
-        errors.add(:file, "#{@raw_csv} is not a valid CSV file")
+        errors.add(:file, "\"#{@raw_csv.slice(0,64)}...\" is not a valid CSV file")
       rescue Errno::ENOENT
-        errors.add(:file, "#{@raw_csv} does not exist")
+        errors.add(:file, "File does not exist")
       end
     end
   end

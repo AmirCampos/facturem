@@ -44,6 +44,19 @@ a, a:focus, a:hover {
 
 .datagrid {
   margin-top: $default_margin_top;
+  width: 100%;
+}
+
+.invoice_box {
+  margin-top: $default_margin_top;
+  border-style: solid;
+  border-width: medium;
+  border-color: $grid_color;
+  padding: 10px;  
+}
+
+.error_box {
+  border-color: red;
 }
 
 footer{

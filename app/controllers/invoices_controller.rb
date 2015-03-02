@@ -22,6 +22,8 @@ class InvoicesController < ApplicationController
     @validator = CSVvalidator::Validator.new(@invoice.csv,@xml_generator)
     unless @validator.valid?
       flash[:alert] = "Please, check errors"
+      # binding.pry
+      @errors = @validator.errors.full_messages
       render('new')
       return
     end
@@ -58,13 +60,10 @@ class InvoicesController < ApplicationController
   end
 
   def destroy
-    # @invoice = Invoice.find(params[:id])
-
-    # @invoice.destroy
-
-    # flash[:notice] = 'Invoice Removed'
-
-    # redirect_to invoices_path
+    @invoice = Invoice.find(params[:id])
+    @invoice.destroy
+    flash[:notice] = 'Invoice Removed'
+    redirect_to invoices_path
   end
 
   def index
