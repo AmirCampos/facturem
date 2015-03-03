@@ -2,6 +2,10 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+h3 {
+  color:$title_color;
+}
+
 body{
   padding-top: 50px;
   font-family:'Arial', sans-serif;
@@ -56,7 +60,7 @@ a, a:focus, a:hover {
 }
 
 .datagrid {
-  margin-top: $default_margin_top;
+  // margin-top: 16px;
   width: 100%;
 }
 

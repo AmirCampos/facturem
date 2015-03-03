@@ -89,7 +89,7 @@ class Invoice < ActiveRecord::Base
   def after_find
     # TODO: Testing after_find
     xml_generator = XMLgenerator::Generator.new
-    validator = CSVvalidator::Validator.new(csv,xml_generator)
+    validator = CSVvalidator::Validator.new(csv,xml_generator,self.issuer)
     @is_valid_xml = validator.valid?
     if @is_valid_xml
       @header           = xml_generator.header

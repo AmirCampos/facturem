@@ -25,7 +25,7 @@ RSpec.describe XMLgenerator, type: :module do
       @raw_csv_3 = IO.read("#{Rails.root}/spec/fixtures/3.csv")
 
       @xml_generator = XMLgenerator::Generator.new
-      @validator = CSVvalidator::Validator.new(@raw_csv_3,@xml_generator)
+      @validator = CSVvalidator::Validator.new(@raw_csv_3,@xml_generator,@issuer)
       @validator.validate
     end
 
@@ -79,7 +79,7 @@ RSpec.describe XMLgenerator, type: :module do
       @raw_csv_2 = IO.read("#{Rails.root}/spec/fixtures/2.csv")
 
       @xml_generator = XMLgenerator::Generator.new
-      @validator = CSVvalidator::Validator.new(@raw_csv_2,@xml_generator)
+      @validator = CSVvalidator::Validator.new(@raw_csv_2,@xml_generator,@issuer)
       @validator.validate
     end
 
@@ -121,7 +121,7 @@ RSpec.describe XMLgenerator, type: :module do
       @raw_csv_1 = IO.read("#{Rails.root}/spec/fixtures/1.csv")
 
       @xml_generator = XMLgenerator::Generator.new
-      @validator = CSVvalidator::Validator.new(@raw_csv_1,@xml_generator)
+      @validator = CSVvalidator::Validator.new(@raw_csv_1,@xml_generator,@issuer)
       @validator.validate
     end
 

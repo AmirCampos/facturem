@@ -1,4 +1,26 @@
 <div class="row">
+    <div class="container">
+        <div class="col-md-6">
+            <h3>Filter invoices</h3>
+            <div id="filter_box" class="navbar-form navbar-left">
+                <%=form_tag root_path, method: 'get', class: "navbar-form navbar-left", role: "search" %>
+                    <%=text_field_tag :filter_text, params[:filter_text], class: 'form-control', placeholder: "Filter text", id: "ed_filter_text" %>
+                        <%=label_tag :signed, class: "checkbox inline submit_cancel" do %>
+                            <%=check_box_tag :signed, "1", params[:signed].present?, class: 'form-control', id:"xb_signed_filter" %><span>Signed invoices</span>
+                                <% end %>
+                                    <%=label_tag :presented, class: "checkbox inline submit_cancel" do %>
+                                        <%=check_box_tag :presented, "1", params[:presented].present?, class: 'form-control', id:"xb_presented_filter"%><span>Presented invoices</span>
+                                            <% end %>
+                                                <p>
+                                                    <%=submit_tag "Apply filter", class: "btn btn-primary" %>
+                                                    <button type="button" id="btn_clear_filter" class="btn btn-success">Clear filter</button>
+                                                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-md-12">
         <div>
             <%=datagrid_form_for @grid, :method=> :get, :url => invoices_path%>
