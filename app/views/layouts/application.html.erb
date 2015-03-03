@@ -36,18 +36,18 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
         <li class="<%=(params[:controller] == 'invoices' && params[:action] == 'index') ? 'active' : '' %>">
-            <%=link_to 'Your invoices', root_path, class: "toggle_link" %>
+            <%=link_to 'Your invoices', root_path, class: "toggle_link img-rounded" %>
         </li>
         <li class="<%=(params[:controller] == 'invoices' && params[:action] == 'new') ? 'active' : '' %>">
-            <%=link_to 'Upload an invoice', new_invoice_path, class: "toggle_link" %>
+            <%=link_to 'Upload an invoice', new_invoice_path, class: "toggle_link img-rounded" %>
         </li>
         <li class="<%=params[:controller] == 'help' ? 'active' : '' %>">
-            <%=link_to 'How to create CSV files', help_path, class: "toggle_link" %>
+            <%=link_to 'How to create CSV files', help_path, class: "toggle_link img-rounded" %>
         </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tasks<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle img-rounded" data-toggle="dropdown">Tasks<span class="caret"></span></a>
               <ul class="dropdown-menu navbar-right" role="menu">
                   <li>
                       <%=link_to "Browse invoices", root_path %>

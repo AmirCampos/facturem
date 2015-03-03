@@ -5,10 +5,11 @@ class InvoicesGrid
   attr_accessor :issuer
 
   scope do
-    # TODO: current isssuer
     Invoice.order(invoice_date: :desc)
   end
 
+  # TODO: remove in production
+  column(:issuer_id)
   column(:customer_name)
   column(:invoice_number)
   column(:invoice_date)
