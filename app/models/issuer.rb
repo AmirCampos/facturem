@@ -7,7 +7,7 @@
 #  company_name        :string           default("")
 #  trade_name          :string
 #  email               :string
-#  password            :string
+#  password_digest     :string
 #  person_type_code    :string           default("J")
 #  residence_type_code :string           default("R")
 #  address             :string
@@ -22,6 +22,8 @@
 
 class Issuer < ActiveRecord::Base
   has_many :invoices, :dependent => :delete_all
+  has_secure_password
+  before_save { self.email = email.downcase }
 
   validates :tax_id, presence: true, uniqueness: true, nif: true
   validates :company_name, presence: true, length: { in: 4..80}

@@ -5,7 +5,7 @@ class CreateIssuers < ActiveRecord::Migration
       t.string :company_name, default: ""
       t.string :trade_name
       t.string :email
-      t.string :password
+      t.string :password_digest
 
       t.string :person_type_code, default: "J" #[F], [J]
       t.string :residence_type_code, default: "R" #[E], [R], [U]

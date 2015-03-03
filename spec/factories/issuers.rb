@@ -7,7 +7,7 @@
 #  company_name        :string           default("")
 #  trade_name          :string
 #  email               :string
-#  password            :string
+#  password_digest     :string
 #  person_type_code    :string           default("J")
 #  residence_type_code :string           default("R")
 #  address             :string

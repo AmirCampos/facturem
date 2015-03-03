@@ -4,12 +4,12 @@ require 'xml_generator'
 class InvoicesController < ApplicationController
   def new
     @page_title = 'Upload invoice'
-    @issuer = Issuer.first
+    @issuer = current_issuer
     @invoice = @issuer.invoices.new
   end
 
   def create
-    @issuer = Issuer.first
+    @issuer = current_issuer
     @invoice = @issuer.invoices.new
     if params[:invoice] == nil
       flash[:alert] = "Please, select a valid file"

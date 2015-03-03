@@ -7,7 +7,7 @@
 #  company_name        :string           default("")
 #  trade_name          :string
 #  email               :string
-#  password            :string
+#  password_digest     :string
 #  person_type_code    :string           default("J")
 #  residence_type_code :string           default("R")
 #  address             :string
@@ -38,11 +38,26 @@ RSpec.describe Issuer, type: :model do
       expect(issuer.errors[:email].present?).to be true
     end
 
+    it "validates email is downcased" do
+      issuer = build(:issuer, email: "UPPER@gmail.com")
+
+      expect(issuer.save).to be true
+      expect(issuer.email).to eq ("upper@gmail.com")
+    end
+
     it "validates presence of password" do
       issuer = build(:issuer, password: nil)
 
       expect(issuer.valid?).to be false
       expect(issuer.errors[:password].present?).to be true
+    end
+
+    it "validates password confirmation" do
+      issuer = build(:issuer, password: "a" * 6, password_confirmation: "b" * 6)
+
+      expect(issuer.valid?).to be false
+      p issuer.errors unless issuer.valid?
+      expect([:password].present?).to be true
     end
 
     it "validates tax_id is valid" do

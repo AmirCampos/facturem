@@ -4,9 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     issuer = Issuer.find_by(email: params[:session][:email].downcase)
-    # TODO: authenticate
-    #if issuer && issuer.authenticate(params[:session][:password])
-    if issuer && issuer.password == params[:session][:password]
+    if issuer && issuer.authenticate(params[:session][:password])
       flash.discard(:alert)
       log_in(issuer)
       redirect_to root_path
