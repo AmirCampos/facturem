@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20150220120643) do
   end
 
   add_index "invoices", ["issuer_id", "customer_id", "invoice_serie", "invoice_num"], name: "ix_customer", using: :btree
-  add_index "invoices", ["issuer_id", "invoice_date", "invoice_serie", "invoice_num"], name: "ix_date", using: :btree
+  add_index "invoices", ["issuer_id", "invoice_date", "invoice_serie", "invoice_num"], name: "ix_date", order: {"invoice_date"=>:desc}, using: :btree
   add_index "invoices", ["issuer_id", "invoice_serie", "invoice_num", "id"], name: "ix_serie_num", using: :btree
   add_index "invoices", ["issuer_id"], name: "index_invoices_on_issuer_id", using: :btree
 
@@ -67,7 +67,8 @@ ActiveRecord::Schema.define(version: 20150220120643) do
     t.string   "company_name",        default: ""
     t.string   "trade_name"
     t.string   "email"
-    t.string   "password"
+    t.string   "password_digest"
+    t.string   "remember_digest"
     t.string   "person_type_code",    default: "J"
     t.string   "residence_type_code", default: "R"
     t.string   "address"

@@ -33,7 +33,7 @@ gem 'iban-tools'
 gem "datagrid", :git => "git://github.com/bogdan/datagrid.git"
 #http://fortawesome.github.io/Font-Awesome/get-started/
 gem 'font-awesome-sass'
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
