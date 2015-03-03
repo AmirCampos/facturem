@@ -7,13 +7,17 @@ RSpec.describe CSVvalidator, type: :module do
   describe "Validates an imported CSV" do
 
     before do
-      issuer = build(:issuer, tax_id: "B57534125")
-      issuer.save
+      issuer_B57534125 = build(:issuer, tax_id: "B57534125")
+      issuer_B57534125.save
+
+      issuer_B07079999 = build(:issuer, tax_id: "B07079999")
+      issuer_B07079999.save
 
       @xml_generator = XMLgenerator::Generator.new
       @raw_csv_1 = IO.read("#{Rails.root}/spec/fixtures/1.csv")
       @raw_csv_2 = IO.read("#{Rails.root}/spec/fixtures/2.csv")
       @raw_csv_3 = IO.read("#{Rails.root}/spec/fixtures/3.csv")
+      @raw_csv_4 = IO.read("#{Rails.root}/spec/fixtures/4.csv")
     end
 
     it "should be a valid CSV file. 1.csv One item. One tax. No payments. No discounts" do
@@ -22,6 +26,14 @@ RSpec.describe CSVvalidator, type: :module do
       p validator.errors.messages unless validator.valid?
       # expect(validator.errors.messages.length).to eq 0
       expect(validator.valid?).to be_truthy
+    end
+
+    it "should not permit upload a CSV from another issuer. 4.csv" do
+      validator = CSVvalidator::Validator.new(@raw_csv_4,@xml_generator)
+
+      p validator.errors.messages unless validator.valid?
+      # expect(validator.errors.messages.length).to eq 0
+      expect(validator.valid?).to be_falsy
     end
 
     it "should create a non existing customer. '41495761N' 1.csv" do
