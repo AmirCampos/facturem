@@ -74,16 +74,15 @@ class InvoicesController < ApplicationController
 
     @current_issuer = current_issuer
     @grid = InvoicesGrid.new(params[:invoices_grid]) do |scope|
-      # params[:filter][:signed]
+      # params[:signed]
       options = {issuer_id: @current_issuer.id}
       where_like = ""
-      if params[:filter]
-        options[:is_signed] = true if params[:filter][:signed] == "1"
-        options[:is_presented] = true  if params[:filter][:presented] == "1"
-        unless params[:filter][:filter_text] == ""
-          where_like = 'subject ILIKE ?'
-          like = params[:filter][:filter_text]
-        end
+
+      options[:is_signed] = true if params[:signed].present?
+      options[:is_presented] = true  if params[:presented].present?
+      if params[:filter_text].present?
+        where_like = 'subject ILIKE ?'
+        like = params[:filter_text]
       end
       if where_like == ""
         scope.where(options).page(params[:page])
