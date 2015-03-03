@@ -14,3 +14,15 @@
   color: $grid_color;
 }
 
+#filter_box {
+  background: inherit;
+  color: $title_color;
+  padding: 0;
+}
+.checkbox span {
+  color: $title_color;
+}
+
+#ed_filter_text {
+  width: 100%
+}

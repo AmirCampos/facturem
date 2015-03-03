@@ -8,8 +8,11 @@ class InvoicesGrid
     Invoice.order(invoice_date: :desc)
   end
 
+  # filter(:is_signed, :boolean)
+
   # TODO: remove in production
   column(:issuer_id)
+  # TODO: remove in production
   column(:customer_name)
   column(:invoice_number)
   column(:invoice_date)
