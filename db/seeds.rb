@@ -30,7 +30,7 @@ end
 def create_invoice(num,issuer)
   csv = IO.read("#{Rails.root}/spec/fixtures/#{num}.csv")
   xml_generator = XMLgenerator::Generator.new
-  validator = CSVvalidator::Validator.new(csv,xml_generator)
+  validator = CSVvalidator::Validator.new(csv,xml_generator,issuer)
   validator.validate
   xml = xml_generator.generate_xml
 

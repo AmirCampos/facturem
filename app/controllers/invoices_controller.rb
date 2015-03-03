@@ -19,7 +19,7 @@ class InvoicesController < ApplicationController
       
     @invoice.csv = params[:invoice][:csv].read
     @xml_generator = XMLgenerator::Generator.new
-    @validator = CSVvalidator::Validator.new(@invoice.csv,@xml_generator)
+    @validator = CSVvalidator::Validator.new(@invoice.csv,@xml_generator,@issuer)
     unless @validator.valid?
       flash[:alert] = "Please, check errors"
       # binding.pry
