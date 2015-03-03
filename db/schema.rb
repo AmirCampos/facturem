@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20150220120643) do
     t.string   "trade_name"
     t.string   "email"
     t.string   "password_digest"
+    t.string   "remember_digest"
     t.string   "person_type_code",    default: "J"
     t.string   "residence_type_code", default: "R"
     t.string   "address"

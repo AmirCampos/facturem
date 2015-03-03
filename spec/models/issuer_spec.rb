@@ -56,7 +56,7 @@ RSpec.describe Issuer, type: :model do
       issuer = build(:issuer, password: "a" * 6, password_confirmation: "b" * 6)
 
       expect(issuer.valid?).to be false
-      p issuer.errors unless issuer.valid?
+      # p issuer.errors unless issuer.valid?
       expect([:password].present?).to be true
     end
 
@@ -116,6 +116,10 @@ RSpec.describe Issuer, type: :model do
       issuer = build(:issuer, postal_code: "7001")
 
       expect(issuer.valid?).to be false
+    end
+
+    it "validates class method Issuer.new_token" do
+      expect(Issuer.new_token.length).to eq(22)
     end
   end
 end
