@@ -24,15 +24,26 @@ body{
   font-size: $issuer_font_size;
 }
 
+.my_navbar_button {
+  height: 36px;
+  top: 8px;
+  padding-top: 8px;
+}
+
 .navbar-default .navbar-nav>.active>a, 
 .navbar-default .navbar-nav>.active>a:focus,
 .navbar-default .navbar-nav>.active>a:hover {
   color: $title_color;
+  @extend .my_navbar_button;
 }
 
 .navbar-default .navbar-nav>li>a  {
   color: $background_color;
 }
+
+// .dropdown.open {
+//   @extend .my_navbar_button;
+// }
 
 a, a:focus, a:hover {
   color: $title_color;

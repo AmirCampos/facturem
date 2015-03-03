@@ -175,7 +175,7 @@ module CSVvalidator
       add_error(:issuer_tax_id, "Issuer #{@issuer_tax_id} is not registered") unless Issuer.find_by(tax_id: @issuer_tax_id)
       # JULIA: How can I acces to this SessionsHelper.current_issuer method?
       # And also during testing?
-      # add_error(:issuer_tax_id, "Issuer #{@issuer_tax_id} is not current issuer. You can not upload invoices from another issuer") unless current_issuer.tax_id == @issuer_tax_id
+      # add_error(:issuer_tax_id, "Issuer #{@issuer_tax_id} is not current issuer. You can not upload invoices from another issuer") unless SessionsHelper::current_issuer.tax_id == @issuer_tax_id
     end
 
     def validate_customer
