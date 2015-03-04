@@ -49,14 +49,11 @@ class InvoicesController < ApplicationController
   end
 
   def update
-    # @invoice = Invoice.find(params[:id])
-    # @invoice.update(get_params)
-    # flash[:notice] = 'Invoice Updated'
-    # redirect_to invoices_path
+    # not necessary at the moment
   end
 
   def edit
-    # @invoice = Invoice.find(params[:id])
+    # not necessary at the moment
   end
 
   def destroy
@@ -131,12 +128,32 @@ class InvoicesController < ApplicationController
   end
 
   def sign
-    # TODO: sign
-    render 'shared/not_implemented'
+    @invoice = Invoice.find(params[:id])
+    render 'sign'
+  end
+
+  def signing
+    @invoice = Invoice.find(params[:id])
+    # TODO: real signing
+    @invoice.xsig = params[:invoice][:signature]
+    @invoice.is_signed = true
+
+    if @invoice.save
+      flash[:notice] = "Invoice signed"
+      redirect_to(action: 'show')
+    else
+      flash[:error] = "Invalid signature"
+      render('sign')
+    end
   end
 
   def render_pdf
     # TODO: render pdf
+    render 'shared/not_implemented'
+  end
+
+  def send
+    # TODO: send to admin
     render 'shared/not_implemented'
   end
 
@@ -148,4 +165,9 @@ class InvoicesController < ApplicationController
     File.open(file_name, 'w') { |file| file.write(field) }
     file_name
   end
+
+  def edit_params
+    params.require(:invoice).permit(:signature)
+  end
+
 end
