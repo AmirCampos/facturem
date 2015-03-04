@@ -56,10 +56,12 @@ class Invoice < ActiveRecord::Base
   end
 
   def formatted_amount
-    ActionController::Base.helpers.number_to_currency(
-      total.total_invoice,
-      locale: 'es',
-    unit: "€", separator: ",", delimiter: ".", format: "%n %u")
+    if total
+      ActionController::Base.helpers.number_to_currency(
+        total.total_invoice,
+        locale: 'es',
+      unit: "€", separator: ",", delimiter: ".", format: "%n %u")
+    end
   end
 
   def invoice_number
@@ -72,16 +74,16 @@ class Invoice < ActiveRecord::Base
   def after_save
     if created_at == updated_at # best way of known it's INSERT, not UPDATE
       invoice_logs.create(
-        action: "Issuer imported CSV and saved XML. #{display_value}",
+        action: "Issuer imported CSV and saved XML.",
       action_code: InvoiceLog::ACTION_SAVE_INVOICE)
     else
       if is_signed_changed?
         invoice_logs.create(
-          action: "Issuer SIGNED invoice. #{display_value}",
+          action: "Issuer SIGNED invoice.",
         action_code: InvoiceLog::ACTION_INVOICE_SIGNED)
       elsif is_presented_changed?
         invoice_logs.create(
-          action: "Issuer PRESENTED invoice. #{display_value}",
+          action: "Issuer PRESENTED invoice.",
         action_code: InvoiceLog::ACTION_INVOICE_PRESENTED)
       else
         invoice_logs.create(

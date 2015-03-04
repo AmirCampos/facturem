@@ -161,7 +161,15 @@ class InvoicesController < ApplicationController
 
   def send_to_admin
     # TODO: send to admin
-    render 'shared/not_implemented'
+    @invoice = Invoice.find(params[:id])
+    @invoice.is_presented = true
+    if @invoice.save
+      flash[:notice] = "Invoice was sent successfully. Please wait while you are paid"
+      redirect_to(action: 'show')
+    else
+      flash[:alert] = "Sorry, something was wrong"
+      render 'show'
+    end
   end
 
   private

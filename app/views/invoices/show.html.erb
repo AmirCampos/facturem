@@ -59,7 +59,7 @@
               </p>
             <%end%>
             <h3>
-              <%if @invoice.is_signed%>
+              <%if @invoice.is_signed && !@invoice.is_presented%>
               <div class="signed_class"><span class="glyphicon glyphicon-ok"></span> Signed</div>
               <%end%>
               <%if @invoice.is_presented%>

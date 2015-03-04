@@ -19,12 +19,17 @@
         <%if flash[:alert]%>
             <div class="row invoice_box error_box">
                 <div class="col-md-12">
-                    <%@errors.each do |error|%>
-                        <div class="row">
-                            <%=error%>
-                        </div>
-                        <%end%>
-
+                    <% if @errors == nil %>
+                            <div class="row">
+                                <p>No valid file selected</p>
+                            </div>
+                    <% else %>
+                        <%@errors.each do |error|%>
+                            <div class="row">
+                                <%=error%>
+                            </div>
+                            <%end%>
+                    <% end %>
                 </div>
             </div>
             <%end%>
