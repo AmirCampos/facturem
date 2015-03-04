@@ -5,7 +5,8 @@ class InvoicesGrid
   attr_accessor :issuer
 
   scope do
-    Invoice.order(invoice_date: :desc)
+    Invoice.joins(:customer).order("invoices.invoice_date desc")
+    # Invoice.order(invoice_date: :desc)
   end
 
   # filter(:is_signed, :boolean)

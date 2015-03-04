@@ -57,7 +57,7 @@ class Invoice < ActiveRecord::Base
 
   def formatted_amount
     ActionController::Base.helpers.number_to_currency(
-      amount,
+      total.total_invoice,
       locale: 'es',
     unit: "€", separator: ",", delimiter: ".", format: "%n %u")
   end

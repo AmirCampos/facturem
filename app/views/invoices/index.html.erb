@@ -4,7 +4,7 @@
             <h3>Filter invoices</h3>
             <div id="filter_box" class="navbar-form navbar-left">
                 <%=form_tag root_path, method: 'get', class: "navbar-form navbar-left", role: "search" %>
-                    <%=text_field_tag :filter_text, params[:filter_text], class: 'form-control', placeholder: "Filter text", id: "ed_filter_text" %>
+                    <%=text_field_tag :filter_text, params[:filter_text], class: 'form-control', placeholder: "Filter by customer name", id: "ed_filter_text" %>
                         <%=label_tag :signed, class: "checkbox inline submit_cancel" do %>
                             <%=check_box_tag :signed, "1", params[:signed].present?, class: 'form-control', id:"xb_signed_filter" %><span>Signed invoices</span>
                                 <% end %>

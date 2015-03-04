@@ -1,11 +1,14 @@
 <% provide(:title, "Signing invoice") %>
 
+
 <div class="row">
   <div class="container">
   <div class="col-md-6 col-md-offset-3">
+    <h1>Sign an invoice</h1>
     <h3><%=@invoice.customer_name%></h3>
     <h4><%=@invoice.subject%></h4>
-    <h4><%=@invoice.total.total_invoice%></h4>
+    <h4><span id="invoice_number" class="lead">Invoice: <%=@invoice.invoice_number%></span><span>Date: <%=@invoice.invoice_date.to_s(:spanish)%></span></h4>
+    <h3><%=@invoice.formatted_amount%></h3>
     <%= form_for(:invoice, url: invoices_sign_path) do |f| %>
 
       <%= f.label :signature %>

@@ -14,11 +14,23 @@ h3 {
   color:$title_color;
 }
 
+h4 {
+  color:$title_color;
+}
+
+h5 {
+  color:$title_color;
+}
+
+h6 {
+  color:$title_color;
+}
+
 body{
   padding-top: 50px;
   font-family:'Arial', sans-serif;
   font-size:14px;
-  color:$background_color;
+  color:$text_color;
   line-height:$issuer_font_size;
 }
 
@@ -70,6 +82,7 @@ a, a:focus, a:hover {
 .datagrid {
   // margin-top: 16px;
   width: 100%;
+  color:$grid_color;
 }
 
 .invoice_box {
@@ -103,4 +116,13 @@ footer{
   .glyphicon {
     margin-right: 0; 
   }
+}
+
+#invoice_number {
+  margin-right: 8px;
+}
+
+.bottom_text {
+  margin-top: 36px;
+  padding-left: 0;
 }

@@ -43,7 +43,7 @@ class InvoicesController < ApplicationController
       # render('show') # show just uploaded invoice
       redirect_to invoice_path(@invoice)
     else
-      flash[:error] = "Please, check errors"
+      flash[:alert] = "Please, check errors"
       render('new')
     end
   end
@@ -69,6 +69,8 @@ class InvoicesController < ApplicationController
       return
     end
 
+    flash[:alert] = nil
+
     @current_issuer = current_issuer
     @grid = InvoicesGrid.new(params[:invoices_grid]) do |scope|
       # params[:signed]
@@ -78,7 +80,7 @@ class InvoicesController < ApplicationController
       options[:is_signed] = true if params[:signed].present?
       options[:is_presented] = true  if params[:presented].present?
       if params[:filter_text].present?
-        where_like = 'subject ILIKE ?'
+        where_like = 'customers.name ILIKE ?'
         like = params[:filter_text]
       end
       if where_like == ""
@@ -92,7 +94,7 @@ class InvoicesController < ApplicationController
   def show
     @invoice = Invoice.find(params[:id])
     unless @invoice.is_valid_xml
-      flash[:error] = "Internal error in this invoice"
+      flash[:alert] = "Internal error in this invoice"
       redirect_to invoices_path
     end
   end
@@ -134,15 +136,20 @@ class InvoicesController < ApplicationController
 
   def signing
     @invoice = Invoice.find(params[:id])
+
     # TODO: real signing
-    @invoice.xsig = params[:invoice][:signature]
+    @invoice.xsig = @invoice.xml + 
+    "<signature>"+
+    BCrypt::Password.create(params[:invoice][:signature])+
+    "</signature>"
+    
     @invoice.is_signed = true
 
     if @invoice.save
       flash[:notice] = "Invoice signed"
       redirect_to(action: 'show')
     else
-      flash[:error] = "Invalid signature"
+      flash[:alert] = "Invalid signature"
       render('sign')
     end
   end
