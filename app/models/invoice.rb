@@ -48,18 +48,11 @@ class Invoice < ActiveRecord::Base
   attr_reader :installment_list
 
   def display_value
-    # TODO: Format currency amount
-    # TODO: testing display_value
-    "Customer: #{customer.name}. Subject: #{subject}. Amount: #{amount}"
+    "Customer: #{customer.name}. Subject: #{subject}. Amount: #{formatted_amount}"
   end
 
   def customer_name
     customer.name
-  end
-
-  def invoice_number
-    # TODO: testing invoice_number
-    (invoice_serie == "" ? invoice_num : invoice_serie+"/"+invoice_num)
   end
 
   private

@@ -10,14 +10,20 @@ class InvoicesGrid
 
   # filter(:is_signed, :boolean)
 
-  # TODO: remove in production
-  column(:issuer_id)
-  # TODO: remove in production
   column(:customer_name)
-  column(:invoice_number)
-  column(:invoice_date)
+  column(:invoice_serie)
+  column(:invoice_num)
+  column(:invoice_date) do
+    invoice_date.to_s(:spanish)
+  end
   column(:subject)
-  column(:amount)
+  column(:amount) do
+    ActionController::Base.helpers.number_to_currency(
+    amount, 
+    locale: 'es',
+    unit: "€", separator: ",", delimiter: ".", format: "%n %u")
+  end
+
   column(:is_signed) do
     is_signed ? "Yes" : "No"
   end
