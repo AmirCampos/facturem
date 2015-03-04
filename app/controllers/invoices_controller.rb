@@ -16,7 +16,7 @@ class InvoicesController < ApplicationController
       render('new')
       return
     end
-      
+
     @invoice.csv = params[:invoice][:csv].read
     @xml_generator = XMLgenerator::Generator.new
     @validator = CSVvalidator::Validator.new(@invoice.csv,@xml_generator,@issuer)
@@ -43,20 +43,17 @@ class InvoicesController < ApplicationController
       # render('show') # show just uploaded invoice
       redirect_to invoice_path(@invoice)
     else
-      flash[:error] = "Please, check errors"
+      flash[:alert] = "Please, check errors"
       render('new')
     end
   end
 
   def update
-    # @invoice = Invoice.find(params[:id])
-    # @invoice.update(get_params)
-    # flash[:notice] = 'Invoice Updated'
-    # redirect_to invoices_path
+    # not necessary at the moment
   end
 
   def edit
-    # @invoice = Invoice.find(params[:id])
+    # not necessary at the moment
   end
 
   def destroy
@@ -67,10 +64,12 @@ class InvoicesController < ApplicationController
   end
 
   def index
-    unless logged_in? 
+    unless logged_in?
       redirect_to login_path
       return
     end
+
+    flash[:alert] = nil
 
     @current_issuer = current_issuer
     @grid = InvoicesGrid.new(params[:invoices_grid]) do |scope|
@@ -81,7 +80,7 @@ class InvoicesController < ApplicationController
       options[:is_signed] = true if params[:signed].present?
       options[:is_presented] = true  if params[:presented].present?
       if params[:filter_text].present?
-        where_like = 'subject ILIKE ?'
+        where_like = 'customers.name ILIKE ?'
         like = params[:filter_text]
       end
       if where_like == ""
@@ -95,7 +94,7 @@ class InvoicesController < ApplicationController
   def show
     @invoice = Invoice.find(params[:id])
     unless @invoice.is_valid_xml
-      flash[:error] = "Internal error in this invoice"
+      flash[:alert] = "Internal error in this invoice"
       redirect_to invoices_path
     end
   end
@@ -131,12 +130,37 @@ class InvoicesController < ApplicationController
   end
 
   def sign
-    # TODO: sign
-    render 'shared/not_implemented'
+    @invoice = Invoice.find(params[:id])
+    render 'sign'
+  end
+
+  def signing
+    @invoice = Invoice.find(params[:id])
+
+    # TODO: real signing
+    @invoice.xsig = @invoice.xml + 
+    "<signature>"+
+    BCrypt::Password.create(params[:invoice][:signature])+
+    "</signature>"
+    
+    @invoice.is_signed = true
+
+    if @invoice.save
+      flash[:notice] = "Invoice signed"
+      redirect_to(action: 'show')
+    else
+      flash[:alert] = "Invalid signature"
+      render('sign')
+    end
   end
 
   def render_pdf
     # TODO: render pdf
+    render 'shared/not_implemented'
+  end
+
+  def send_to_admin
+    # TODO: send to admin
     render 'shared/not_implemented'
   end
 
@@ -148,4 +172,9 @@ class InvoicesController < ApplicationController
     File.open(file_name, 'w') { |file| file.write(field) }
     file_name
   end
+
+  def edit_params
+    params.require(:invoice).permit(:signature)
+  end
+
 end

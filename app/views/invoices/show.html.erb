@@ -42,13 +42,13 @@
                     <tr>
                         <td>Invoice date</td>
                         <td>
-                            <%=@invoice.invoice_date%>
+                            <%=@invoice.invoice_date.to_s(:spanish)%>
                         </td>
                     </tr>
                     <tr>
                         <td>Invoice amount</td>
                         <td class="lead">
-                            <%=@invoice.total.total_invoice%>
+                            <%=@invoice.formatted_amount%>
                         </td>
                     </tr>
                 </tbody>
@@ -97,7 +97,7 @@
           <li>
             <div class="btn btn-danger action_button my_button" <%=(@invoice.is_signed ? '' : 'disabled="disabled"')%> >
               <span class="glyphicon glyphicon-send"></span>
-              <%=link_to 'Send to administration', invoices_sign_path(@invoice)%>
+              <%=link_to 'Send to administration', invoices_send_to_admin_path(@invoice)%>
             </div>
           </li>
           <li>
