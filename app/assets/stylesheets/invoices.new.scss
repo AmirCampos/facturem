@@ -17,3 +17,19 @@
 .submit_cancel {
   margin-top: 16px;
 }
+
+#need_help_button {
+  margin-top: 12px;
+  margin-bottom: 24px;
+  height: 64px;
+  padding: $big_button_padding;
+  font-size: 1.5em;
+  a {
+    color: inherit;
+    margin-left: 4px;
+  }
+}  
+
+#choose_file_btn {
+  width: 100%
+}

@@ -48,13 +48,18 @@ class Invoice < ActiveRecord::Base
   attr_reader :installment_list
 
   def display_value
-    # TODO: Format currency amount
-    # TODO: testing display_value
-    "Customer: #{customer.name}. Subject: #{subject}. Amount: #{amount}"
+    "Customer: #{customer.name}. Subject: #{subject}. Amount: #{formatted_amount}"
   end
 
   def customer_name
     customer.name
+  end
+
+  def formatted_amount
+    ActionController::Base.helpers.number_to_currency(
+      amount,
+      locale: 'es',
+    unit: "€", separator: ",", delimiter: ".", format: "%n %u")
   end
 
   def invoice_number
