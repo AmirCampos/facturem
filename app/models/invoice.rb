@@ -55,6 +55,18 @@ class Invoice < ActiveRecord::Base
     customer.name
   end
 
+  def formatted_amount
+    ActionController::Base.helpers.number_to_currency(
+      amount,
+      locale: 'es',
+    unit: "€", separator: ",", delimiter: ".", format: "%n %u")
+  end
+
+  def invoice_number
+    # TODO: testing invoice_number
+    (invoice_serie == "" ? invoice_num : invoice_serie+"/"+invoice_num)
+  end
+
   private
 
   def after_save

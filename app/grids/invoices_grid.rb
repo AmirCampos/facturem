@@ -18,6 +18,7 @@ class InvoicesGrid
   end
   column(:subject)
   column(:amount) do
+    # TODO: DRY
     ActionController::Base.helpers.number_to_currency(
     amount, 
     locale: 'es',

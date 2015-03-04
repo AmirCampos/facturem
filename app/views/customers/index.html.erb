@@ -1,7 +1,16 @@
 <div id="customers-index">
   <% @customers.each do |customer| %>
-    <div class="row">
-        <h3><%= customer.display_value %></h3>
+    <div class="row invoice_box">
+      <div class="container">
+        <div class="col-md-12">
+          <h3><%= customer.name %> <span class="small"><%= customer.description %></span> </h3>
+          <h4>
+          Processing unit: <%= customer.processing_unit %>. 
+          Accounting service: <%= customer.accounting_service %>. 
+          Management unit: <%= customer.management_unit %>.
+          </h4>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

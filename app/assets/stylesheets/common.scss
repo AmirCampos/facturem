@@ -2,6 +2,14 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+h1 {
+  color:$title_color;
+}
+
+h2 {
+  color:$title_color;
+}
+
 h3 {
   color:$title_color;
 }

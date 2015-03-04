@@ -1,10 +1,12 @@
 <div class="row invoice_box">
     <div class="col-md-12">
         <h2>Select a CSV file for creating an invoice</h2>
-        <h3><%=link_to 'More info about how to create this files with Excel', help_path%></h3>
-
+      <div class="btn btn-success" id="need_help_button">
+        <span class="glyphicon glyphicon-question-sign"></span>
+        <%=link_to 'Need help? Explained here',  help_path %>          
+      </div>
         <%=form_for @invoice, html: {multipart: true} do |f|%>
-            <%=f.file_field :csv%>
+            <%=f.file_field :csv, class: 'btn btn-default', id: 'choose_file_btn'%>
                 <div class="submit_cancel">
                     <%=f.submit "Submit", class: 'btn btn-primary'%>
                         <%=link_to "Cancel", invoices_path, class: 'btn btn-default'%>
