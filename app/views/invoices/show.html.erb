@@ -1,64 +1,65 @@
-<div class="row invoice_show">
-    <div class="col-md-9 invoice_box">
-        <div>
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>Customer</td>
-                        <td>
-                            <h2 class="lead"><%=@invoice.customer_name%></h2>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Subject</td>
-                        <td>
-                            <%=@invoice.header.invoice_subject%>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Processing unit</td>
-                        <td>
-                            <%=@invoice.header.customer_processing_unit%>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Accounting service</td>
-                        <td>
-                            <%=@invoice.header.customer_accounting_service%>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Management unit</td>
-                        <td>
-                            <%=@invoice.header.customer_processing_unit%>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Invoice number</td>
-                        <td>
-                            <%=@invoice.invoice_number%>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Invoice date</td>
-                        <td>
-                            <%=@invoice.invoice_date.to_s(:spanish)%>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Invoice amount</td>
-                        <td class="lead">
-                            <%=@invoice.formatted_amount%>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <%unless @invoice.is_signed || @invoice.is_presented%>
-              <p class="small">
-                <%=link_to 'Delete invoice', invoice_path(@invoice), method: :delete, data: {confirm: 'Are you sure?'}%>
-              </p>
-            <%end%>
-            <h3>
+<div class="continer">
+    <div class="row invoice_show">
+        <div class="col-md-9 invoice_box">
+            <div>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Customer</td>
+                            <td>
+                                <h2 class="lead"><%=@invoice.customer_name%></h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Subject</td>
+                            <td>
+                                <%=@invoice.header.invoice_subject%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Processing unit</td>
+                            <td>
+                                <%=@invoice.header.customer_processing_unit%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Accounting service</td>
+                            <td>
+                                <%=@invoice.header.customer_accounting_service%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Management unit</td>
+                            <td>
+                                <%=@invoice.header.customer_processing_unit%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Invoice number</td>
+                            <td>
+                                <%=@invoice.invoice_number%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Invoice date</td>
+                            <td>
+                                <%=@invoice.invoice_date.to_s(:spanish)%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Invoice amount</td>
+                            <td class="lead">
+                                <%=@invoice.formatted_amount%>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <%unless @invoice.is_signed || @invoice.is_presented%>
+                    <p class="small">
+                        <%=link_to 'Delete invoice', invoice_path(@invoice), class: "text-danger", method: :delete, data: {confirm: 'Are you sure?'}%>
+                    </p>
+                    <%end%>
+                        <h3>
               <%if @invoice.is_signed && !@invoice.is_presented%>
               <div class="signed_class"><span class="glyphicon glyphicon-ok"></span> Signed</div>
               <%end%>
@@ -66,56 +67,59 @@
               <div class="presented_class"><span class="glyphicon glyphicon-send"></span> Sent</div>
               <%end%>
             </h3>
+            </div>
+        </div>
+        <div class="col-md-3 vertical_buttons_group">
+            <ul class="list-unstyled">
+                <li>
+                    <div class="btn btn-success action_button my_button">
+                        <span class="fa fa-file-excel-o"></span>
+                        <%=link_to 'Download original CSV file', invoices_download_csv_path(@invoice)%>
+                    </div>
+                </li>
+                <li>
+                    <div class="btn btn-warning action_button my_button">
+                        <span class="glyphicon glyphicon-save-file"></span>
+                        <%=link_to 'Download unsigned XML file', invoices_download_xml_path(@invoice)%>
+                    </div>
+                </li>
+                <li>
+                    <div class="btn btn-danger action_button my_button" <%=(@invoice.is_signed ? 'disabled="disabled"' : '')%> >
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <%=link_to 'Sign invoice', invoices_sign_path(@invoice)%>
+                    </div>
+                </li>
+                <li>
+                    <div class="btn btn-primary action_button my_button" <%=(@invoice.is_signed ? '' : 'disabled="disabled"')%> >
+                        <span class="fa fa-file-text-o"></span>
+                        <%=link_to 'Download XSIG signed file', invoices_download_xsig_path(@invoice)%>
+                    </div>
+                </li>
+                <li>
+                    <div class="btn btn-danger action_button my_button" <%=(@invoice.is_signed ? '' : 'disabled="disabled"')%> >
+                        <span class="glyphicon glyphicon-send"></span>
+                        <%=link_to 'Send to administration', invoices_send_to_admin_path(@invoice)%>
+                    </div>
+                </li>
+                <li>
+                    <div class="btn btn-warning action_button my_button">
+                        <span class="fa fa-file-pdf-o"></span>
+                        <%=link_to 'Download as PDF', invoices_render_pdf_path(@invoice)%>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="col-md-3 vertical_buttons_group">
-        <ul class="list-unstyled">
-          <li>
-            <div class="btn btn-success action_button my_button">
-              <span class="fa fa-file-excel-o"></span>
-              <%=link_to 'Download original CSV file', invoices_download_csv_path(@invoice)%>
-            </div>
-          </li>
-          <li>
-            <div class="btn btn-warning action_button my_button">
-              <span class="glyphicon glyphicon-save-file"></span>
-              <%=link_to 'Download unsigned XML file', invoices_download_xml_path(@invoice)%>
-            </div>
-          </li>
-          <li>
-            <div class="btn btn-danger action_button my_button" <%=(@invoice.is_signed ? 'disabled="disabled"' : '')%> >
-              <span class="glyphicon glyphicon-ok"></span>
-              <%=link_to 'Sign invoice', invoices_sign_path(@invoice)%>
-            </div>
-          </li>
-          <li>
-            <div class="btn btn-primary action_button my_button" <%=(@invoice.is_signed ? '' : 'disabled="disabled"')%> >
-              <span class="fa fa-file-text-o"></span>
-              <%=link_to 'Download XSIG signed file', invoices_download_xsig_path(@invoice)%>
-            </div>
-          </li>
-          <li>
-            <div class="btn btn-danger action_button my_button" <%=(@invoice.is_signed ? '' : 'disabled="disabled"')%> >
-              <span class="glyphicon glyphicon-send"></span>
-              <%=link_to 'Send to administration', invoices_send_to_admin_path(@invoice)%>
-            </div>
-          </li>
-          <li>
-            <div class="btn btn-warning action_button my_button">
-              <span class="fa fa-file-pdf-o"</span>
-              <%=link_to 'Download as PDF', invoices_render_pdf_path(@invoice)%>
-            </div>
-          </li>
-        </ul>
-    </div>
-</div>
-<div class="row invoice_box">
-    <div class="col-md-12">
-        <%@invoice.invoice_logs.each do |log|%>
-            <div class="row">
-                <mark><%=log.created_at%></mark><span>: <%=log.action%></span>
-            </div>
-            <%end%>
+    <div class="row">
+        <div class="col-md-9 invoice_box log_box">
+            <%@invoice.invoice_logs.each do |log|%>
+                <div class="row">
+                    <mark>
+                        <%=log.created_at%>
+                    </mark><span>: <%=log.action%></span>
+                </div>
+                <%end%>
 
+        </div>
     </div>
 </div>

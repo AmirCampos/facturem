@@ -59,4 +59,4 @@ create_invoice(4,issuer).save
 create_invoice(5,issuer).save
 create_invoice(6,issuer).save
 
-issuer.update_attribute(:description, "Accounting manager: Fanny")
+Customer.first.update_attribute(:description, "Accounting manager: Fanny")

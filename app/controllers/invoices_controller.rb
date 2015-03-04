@@ -107,6 +107,8 @@ class InvoicesController < ApplicationController
       type: "application/csv",
       x_sendfile: true
     )
+    save_download_log(invoice,"CSV")
+    # render "show"
   end
 
   def download_xml
@@ -117,6 +119,8 @@ class InvoicesController < ApplicationController
       type: "application/xml",
       x_sendfile: true
     )
+    save_download_log(invoice,"XML")
+    # render "show"
   end
 
   def download_xsig
@@ -127,6 +131,8 @@ class InvoicesController < ApplicationController
       type: "application/xsig",
       x_sendfile: true
     )
+    save_download_log(invoice,"XSIG")
+    # render "show"
   end
 
   def sign
@@ -136,16 +142,20 @@ class InvoicesController < ApplicationController
 
   def signing
     @invoice = Invoice.find(params[:id])
+    signature = params[:invoice][:signature]
+    is_error = signature != "abcdef"
 
-    # TODO: real signing
-    @invoice.xsig = @invoice.xml + 
-    "<signature>"+
-    BCrypt::Password.create(params[:invoice][:signature])+
-    "</signature>"
-    
-    @invoice.is_signed = true
+    unless is_error
+      # TODO: real signing
+      @invoice.xsig = @invoice.xml + 
+      "<signature>"+
+      BCrypt::Password.create(signature)+
+      "</signature>"
+      
+      @invoice.is_signed = true
+    end
 
-    if @invoice.save
+    if @invoice.save && !is_error
       flash[:notice] = "Invoice signed"
       redirect_to(action: 'show')
     else
@@ -157,6 +167,7 @@ class InvoicesController < ApplicationController
   def render_pdf
     # TODO: render pdf
     render 'shared/not_implemented'
+    #save_download_log(invoice,"XML")
   end
 
   def send_to_admin
@@ -173,6 +184,14 @@ class InvoicesController < ApplicationController
   end
 
   private
+
+  # FIXME: saves TWO times every log
+  def save_download_log(invoice,format)
+    invoice.invoice_logs.create(
+      action: "Downloaded invoice in #{format} format.",
+    action_code: InvoiceLog::ACTION_INVOICE_DOWNLOAD)
+    invoice.invoice_logs.reload
+  end
 
   def build_tmp_file_name(invoice, ext)
     field = invoice.attributes[ext]
