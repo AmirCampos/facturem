@@ -16,7 +16,7 @@ class InvoicesController < ApplicationController
       render('new')
       return
     end
-      
+
     @invoice.csv = params[:invoice][:csv].read
     @xml_generator = XMLgenerator::Generator.new
     @validator = CSVvalidator::Validator.new(@invoice.csv,@xml_generator,@issuer)
@@ -64,7 +64,7 @@ class InvoicesController < ApplicationController
   end
 
   def index
-    unless logged_in? 
+    unless logged_in?
       redirect_to login_path
       return
     end
@@ -152,7 +152,7 @@ class InvoicesController < ApplicationController
     render 'shared/not_implemented'
   end
 
-  def send
+  def send_to_admin
     # TODO: send to admin
     render 'shared/not_implemented'
   end

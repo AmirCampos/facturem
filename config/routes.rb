@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'invoices/:id/download_csv', to: 'invoices#download_csv', as: 'invoices_download_csv'
   get 'invoices/:id/download_xml', to: 'invoices#download_xml', as: 'invoices_download_xml'
   get 'invoices/:id/download_xsig', to: 'invoices#download_xsig', as: 'invoices_download_xsig'
-  get 'invoices/:id/send', to: 'invoices#send', as: 'invoices_send'
+  get 'invoices/:id/send', to: 'invoices#send_to_admin', as: 'invoices_send_to_admin'
   get 'invoices/:id/sign', to: 'invoices#sign', as: 'invoices_sign'
   post 'invoices/:id/sign', to: 'invoices#signing', as: 'invoices_signing'
   get 'invoices/:id/render_pdf', to: 'invoices#render_pdf', as: 'invoices_render_pdf'

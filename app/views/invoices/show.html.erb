@@ -97,7 +97,7 @@
           <li>
             <div class="btn btn-danger action_button my_button" <%=(@invoice.is_signed ? '' : 'disabled="disabled"')%> >
               <span class="glyphicon glyphicon-send"></span>
-              <%=link_to 'Send to administration', invoices_sign_path(@invoice)%>
+              <%=link_to 'Send to administration', invoices_send_to_admin_path(@invoice)%>
             </div>
           </li>
           <li>
