@@ -34,6 +34,9 @@ gem "datagrid", :git => "git://github.com/bogdan/datagrid.git"
 #http://fortawesome.github.io/Font-Awesome/get-started/
 gem 'font-awesome-sass'
 gem 'bcrypt', '~> 3.1.7'
+gem 'kaminari'
+gem 'faker'
+gem 'factory_girl_rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -48,14 +51,12 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'faker'
   gem 'pry-rails'
 
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.1.0'
-  gem 'factory_girl_rails'
 
   # Add a comment summarizing the current schema to the top or bottom of each of your…
   gem 'annotate', '~> 2.6.5'
@@ -67,4 +68,3 @@ group :development, :test do
 end
 
 
-gem 'kaminari'
