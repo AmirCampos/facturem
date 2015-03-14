@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe HelpController, :type => :controller do
+RSpec.describe CustomersController, :type => :controller do
 
   describe "GET index" do
     it "returns http success" do
