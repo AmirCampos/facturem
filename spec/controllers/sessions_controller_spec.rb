@@ -28,12 +28,10 @@ RSpec.describe SessionsController, :type => :controller do
 
       expect(response).to render_template("new")
     end
-    # TODO: undefined method `values' for #<ActionController::TestResponse
+
     it "renders index when valid user/password" do
       post :create, session: { email: "b57534125@gmail.com", password: "12345"}
       assert_response :success 
-
-      # expect(response).to route_to(controller: "invoices", action: "index")
     end
   end
 
@@ -45,16 +43,10 @@ RSpec.describe SessionsController, :type => :controller do
       issuer.save
       session[:issuer_id] = issuer.id
     end
-    # TODO: undefined method `values' for #<ActionController::TestResponse
     it "renders login again when logout" do
       delete :destroy
 
       assert_response :redirect 
-      # assert_select 'session_remember_me', true
-      ## expect(response).to route_to("sessions#new")
-      # expect(response).to route_to(login_path)
-      ## expect(get('/logout')).to route_to(controller: 'sessions#new')
-      ## expect(delete("/logout")).to route_to("sessions#new")      
     end
   end
 

@@ -31,7 +31,6 @@ RSpec.describe CSVvalidator, type: :module do
     it "should not permit upload a CSV from another issuer. 4.csv" do
       validator = CSVvalidator::Validator.new(@raw_csv_4,@xml_generator,@issuer_B57534125)
 
-      p validator.errors.messages unless validator.valid?
       # expect(validator.errors.messages.length).to eq 0
       expect(validator.valid?).to be_falsy
     end
