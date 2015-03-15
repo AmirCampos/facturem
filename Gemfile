@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
+gem 'bootstrap-sass',       '3.2.0.0'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -67,7 +69,7 @@ group :development, :test do
   # Better Errors replaces the standard Rails error page with a much better and more useful error page. It is also usable outside of Rails in any Rack app as Rack middleware.
   gem "better_errors"
   gem "binding_of_caller"
-  gem "awesome_print"
+  gem "awesome_print", require:"ap"
 
 end
 
