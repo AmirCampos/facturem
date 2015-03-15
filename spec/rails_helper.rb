@@ -66,11 +66,13 @@ RSpec.configure do |config|
   config.before do
     DatabaseCleaner.start
     ActionMailer::Base.deliveries.clear
+    Capybara.current_driver = :selenium_chrome
   end
 
   config.after do
     DatabaseCleaner.clean
+    Capybara.use_default_driver
   end
-  Capybara.default_driver = :webkit
+  # Capybara.default_driver = :webkit
 
 end

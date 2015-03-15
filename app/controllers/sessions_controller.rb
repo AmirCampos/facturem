@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   # code from: https://www.railstutorial.org/book/log_in_log_out#sec-remember_me
   def create
     issuer = Issuer.find_by(email: params[:session][:email].downcase)
+    # binding.pry
     if issuer && issuer.authenticate(params[:session][:password])
       flash.discard(:alert)
       log_in(issuer)

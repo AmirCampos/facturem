@@ -58,6 +58,7 @@ group :development, :test do
 
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.1.0'
 
