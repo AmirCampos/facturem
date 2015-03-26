@@ -83,7 +83,7 @@ class InvoicesController < ApplicationController
         where_like = 'customers.name ILIKE ?'
         like = params[:filter_text]
       end
-      if where_like == ""
+      if where_like.blank?
         scope.where(options).page(params[:page])
       else
         scope.where([where_like,'%'+like+'%']).where(options).page(params[:page])

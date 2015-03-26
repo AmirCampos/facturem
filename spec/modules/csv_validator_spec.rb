@@ -92,8 +92,15 @@ RSpec.describe CSVvalidator, type: :module do
       validator = CSVvalidator::Validator.new(bad_version,@xml_generator,@issuer_B57534125)
 
       expect(validator.valid?).to be_falsy
-      # expect(validator.errors.messages).to include(:version)
       expect(validator.errors.messages[:version]).to eq ["Line 1:Version v1.1 is not supported"]
+    end
+
+    it "should be a malformed csv" do
+      bad_file = IO.read("#{Rails.root}/spec/fixtures/malformed.csv")
+      validator = CSVvalidator::Validator.new(bad_file,@xml_generator,@issuer_B57534125)
+      expect(validator.valid?).to be_falsy
+      expect(validator.errors.messages).to include(:file)
+      # expect(validator.errors.messages[:file]).to end_with "is not a valid CSV file"
     end
 
   end

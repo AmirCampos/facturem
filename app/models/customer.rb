@@ -23,8 +23,8 @@ class Customer < ActiveRecord::Base
   validates :management_unit, presence: true, length: { in: 8..10 }
 
   def display_value
-    # TODO: testing display_value
     result = "#{tax_id} #{name}"
-    result = result + " #{description}" unless description == ""
+    result = result + " #{description}" unless description.blank?
+    result
   end
 end

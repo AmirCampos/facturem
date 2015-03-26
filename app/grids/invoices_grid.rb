@@ -19,11 +19,7 @@ class InvoicesGrid
   end
   column(:subject)
   column(:amount) do
-    # TODO: DRY
-    ActionController::Base.helpers.number_to_currency(
-    amount, 
-    locale: 'es',
-    unit: "€", separator: ",", delimiter: ".", format: "%n %u")
+    Invoice.format_currency(amount)
   end
 
   column(:is_signed) do

@@ -16,6 +16,7 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
+
   describe "Validations" do
     it "validates presence of name" do
       customer = build(:customer, name: nil)
@@ -50,6 +51,22 @@ RSpec.describe Customer, type: :model do
 
       expect(customer.valid?).to be false
       expect(customer.errors[:management_unit].present?).to be true
+    end
+  end
+
+  describe "Public methods" do
+
+    it "validates display_value with no comment" do
+      customer = build(:customer)
+
+      expect(customer.display_value).to eq "#{customer.tax_id} #{customer.name}"
+    end
+
+    it "validates display_value with description" do
+      customer = build(:customer)
+      customer.update_attribute :description, "a desc"
+
+      expect(customer.display_value).to eq "#{customer.tax_id} #{customer.name} #{customer.description}"
     end
 
   end
