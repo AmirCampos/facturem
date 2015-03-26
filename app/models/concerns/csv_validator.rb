@@ -40,7 +40,7 @@ module CSVvalidator
       @xml_generator.clear
       row_counter = 1
       begin
-        if @raw_csv == ""
+        if @raw_csv.blank?
           raise CSV::MalformedCSVError
         end
         CSV.parse(@raw_csv) do |row|
@@ -64,7 +64,6 @@ module CSVvalidator
           end
           row_counter += 1
         end
-        # TODO: test malformed file
         raise CSV::MalformedCSVError unless row_counter > 1
       rescue CSV::MalformedCSVError
         errors.add(:file, "\"#{@raw_csv.slice(0,64)}...\" is not a valid CSV file")

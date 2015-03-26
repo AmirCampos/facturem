@@ -1,0 +1,4 @@
+Invoice header,Issuer TAX ID. Must match with configuration.,Customer ID,Customer TAX ID,Customer name,Customer accounting service (oficina contable). Role type = 01,Customer management unit  (órgano gestor). Role type = 02,Customer processing unit (unidad tramitadora). Role type = 03,Customer address,Customer postal code,Customer town,Customer province,Invoice serie,Invoice number,Invoice date,Invoice subject
+Invoice detail,Article code,Delivery note number. Optional.,Delivery note date. Optional.,Item description,Quantity,Unit price without tax,Total line,Discount reason (text),Discount rate,Discount amount,Tax rate,Tax base,Tax amount,,
+Tax amount and rates,Tax rate,Tax base,Tax amount,,,,,,,,,,,,
+Invoice totals,Total gross amount,General discount reason,General discount rate,Total general discount,Total amount before taxes,Total invoice,,,,,,,,,

@@ -56,17 +56,16 @@ class Invoice < ActiveRecord::Base
   end
 
   def formatted_amount
-    if total
-      ActionController::Base.helpers.number_to_currency(
-        total.total_invoice,
-        locale: 'es',
-      unit: "€", separator: ",", delimiter: ".", format: "%n %u")
-    end
+    (total.nil? ? self.class.format_currency(0) : self.class.format_currency(total.total_invoice))
+  end
+
+  def self.format_currency(value)
+    ActionController::Base.helpers.number_to_currency(
+      value,locale: 'es',unit: "€", separator: ",", delimiter: ".", format: "%n %u")
   end
 
   def invoice_number
-    # TODO: testing invoice_number
-    (invoice_serie == "" ? invoice_num : invoice_serie+"/"+invoice_num)
+    (invoice_serie.blank? ? invoice_num : invoice_serie+"/"+invoice_num)
   end
 
   private
@@ -94,7 +93,6 @@ class Invoice < ActiveRecord::Base
   end
 
   def after_find
-    # TODO: Testing after_find
     xml_generator = XMLgenerator::Generator.new
     validator = CSVvalidator::Validator.new(csv,xml_generator,self.issuer)
     @is_valid_xml = validator.valid?
