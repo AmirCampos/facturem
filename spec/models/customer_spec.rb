@@ -30,6 +30,8 @@ RSpec.describe Customer, type: :model do
       customer = build(:customer, tax_id: "B07559974")
 
       expect(customer.valid?).to be true
+      # valid minitest alternative
+      # assert customer.valid?
     end
 
     it "validates presence of processing_unit" do
@@ -37,6 +39,8 @@ RSpec.describe Customer, type: :model do
 
       expect(customer.valid?).to be false
       expect(customer.errors[:processing_unit].present?).to be true
+      # valid minitest alternative
+      # assert_includes(customer.errors,:processing_unit)
     end
 
     it "validates presence of accounting_service" do
@@ -67,6 +71,8 @@ RSpec.describe Customer, type: :model do
       customer.update_attribute :description, "a desc"
 
       expect(customer.display_value).to eq "#{customer.tax_id} #{customer.name} #{customer.description}"
+      # valid minitest alternative
+      # assert_equal("#{customer.tax_id} #{customer.name} #{customer.description}",customer.display_value)
     end
 
   end

@@ -13,13 +13,9 @@ describe "The login process", :type => :feature do
     scenario 'with valid user/passw' do
       visit login_path
 
-      # ap Issuer.first
-
       try_login_with(@issuer.email,"12345")
-      # fails because inside sessions controller created iusser here is missing
-      # changed all combinations in rails_helper database cleaner with no success :(
-        
-      # expect(page).to have_content @issuer.company_name
+      
+      expect(page).to have_content @issuer.company_name
     end
 
     scenario 'with NOT valid user/passw' do

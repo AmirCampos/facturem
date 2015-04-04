@@ -1,14 +1,12 @@
 require 'rails_helper'
 
-# TODO: issuers_routing_spec.rb
-
-# RSpec.describe "Routing to cats", type: :routing do
-#   it "routes GET /cats to cats#index" do
-#     expect(get: "/cats").to route_to(
-#       controller: "cats",
-#       action: "index"
-#     )
-#   end
+RSpec.describe "Routing to customers", type: :routing do
+  it "routes GET /customers to customers#index" do
+    expect(get: "/customers").to route_to(
+      controller: "customers",
+      action: "index"
+    )
+  end
 
 #   it "routes GET /cats/:id to cats#show" do
 #     expect(get: "/cats/1").to route_to(
@@ -33,4 +31,4 @@ require 'rails_helper'
 #       id: "1"
 #     )
 #   end
-# end
+end
